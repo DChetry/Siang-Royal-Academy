@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="600" height="450" fill="none">
+  <defs>
+    <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E3A8A"/>
+      <stop offset="100%" stop-color="#0284C7"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="450" fill="url(#g3)"/>
+  <rect x="150" y="80" width="300" height="200" rx="8" fill="#FFFFFF" fill-opacity="0.15" stroke="#FFFFFF" stroke-width="2"/>
+  <text x="300" y="190" text-anchor="middle" font-family="'Poppins', sans-serif" font-size="22" font-weight="700" fill="#FFFFFF">MODERN CLASSROOMS</text>
+  <text x="300" y="220" text-anchor="middle" font-family="'Inter', sans-serif" font-size="14" fill="#E0F2FE">60 Sq. Meters • Well Ventilated</text>
+  <rect x="60" y="380" width="480" height="34" rx="17" fill="#000000" fill-opacity="0.6"/>
+  <text x="300" y="402" text-anchor="middle" font-family="'Poppins', sans-serif" font-size="13" font-weight="600" fill="#FFFFFF">ACTIVE LEARNING IN THE CLASSROOM</text>
+</svg>

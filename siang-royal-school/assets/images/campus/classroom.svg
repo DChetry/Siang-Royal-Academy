@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400" fill="none">
+  <rect width="600" height="400" rx="16" fill="#F8FAFC"/>
+  <!-- Blackboard / Smartboard -->
+  <rect x="140" y="40" width="320" height="160" rx="8" fill="#1E293B" stroke="#D4AF37" stroke-width="4"/>
+  <rect x="155" y="55" width="290" height="130" rx="4" fill="#0F172A"/>
+  <text x="300" y="115" text-anchor="middle" font-family="'Poppins', sans-serif" font-size="17" font-weight="600" fill="#E2E8F0">19 CLASSROOMS</text>
+  <text x="300" y="145" text-anchor="middle" font-family="'Inter', sans-serif" font-size="13" font-weight="500" fill="#38BDF8">STANDARD SIZE: 60 SQ. METERS EACH</text>
+  <!-- Teacher's Podium -->
+  <rect x="250" y="210" width="100" height="45" rx="4" fill="#E2E8F0" stroke="#94A3B8"/>
+  <line x1="260" y1="210" x2="260" y2="255" stroke="#CBD5E1"/>
+  <!-- Student Desks Grid -->
+  <g fill="#CBD5E1" stroke="#94A3B8" stroke-width="1.5">
+    <rect x="70" y="275" width="110" height="35" rx="4"/>
+    <rect x="245" y="275" width="110" height="35" rx="4"/>
+    <rect x="420" y="275" width="110" height="35" rx="4"/>
+    <rect x="70" y="335" width="110" height="35" rx="4"/>
+    <rect x="245" y="335" width="110" height="35" rx="4"/>
+    <rect x="420" y="335" width="110" height="35" rx="4"/>
+  </g>
+  <!-- Placeholder badge -->
+  <rect x="190" y="10" width="220" height="24" rx="12" fill="#E2E8F0"/>
+  <text x="300" y="26" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" font-weight="600" fill="#475569">[CLASSROOM INFRASTRUCTURE]</text>
+</svg>

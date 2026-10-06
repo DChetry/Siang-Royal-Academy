@@ -1,0 +1,2363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Siang Royal School | CBSE Affiliated (2230091) | East Siang, Arunachal Pradesh</title>
+  <meta name="description" content="Official website of Siang Royal School, Mirbuk Pekung, East Siang, Arunachal Pradesh - 791102. CBSE Affiliation No. 2230091, School Code 35089. Comprehensive modern CBSE educational institution.">
+  <meta name="keywords" content="Siang Royal School, CBSE School East Siang, Mirbuk Pekung, Arunachal Pradesh School, CBSE 2230091, Ashish Pokhrel Chetr, SARAS 7.0">
+  <meta name="author" content="Siang Royal School">
+  <meta property="og:title" content="Siang Royal School | Modern CBSE School in East Siang">
+  <meta property="og:description" content="Learning Today. Leading Tomorrow. Explore academic programs, 14,136.70 sq. m campus, laboratories, admissions, and CBSE SARAS 7.0 disclosure.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="assets/logo/favicon.jpg">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- React 18, ReactDOM & Babel for In-Browser Modern React SPA Execution -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- Central School Data Store -->
+  <script src="js/schoolData.js"></script>
+</head>
+<body>
+  <!-- React Mount Point -->
+  <div id="root">
+    <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; font-family: 'Poppins', sans-serif; color: #0F2C59; background: #F8FAFC;">
+      <div style="text-align: center;">
+        <img src="assets/logo/sschool.jpg" alt="Siiang Royal School Logo" style="height: 60px; margin: 0 auto 1.5rem auto;">
+        <p style="font-size: 1.1rem; font-weight: 600; color: #1E3A8A;">Loading Siang Royal School Portal...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- React Application Source -->
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+    const data = window.SCHOOL_DATA;
+
+    // --- REUSABLE SVG ICONS ---
+    const Icon = ({ name, size = 18, color = "currentColor", className = "" }) => {
+      const icons = {
+        phone: <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>,
+        mail: <><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></>,
+        mapPin: <><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></>,
+        calendar: <><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></>,
+        award: <><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></>,
+        book: <><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></>,
+        users: <><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></>,
+        building: <><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="22" x2="9" y2="12"/><line x1="15" y1="12" x2="15" y2="22"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="8" y1="6" x2="8.01" y2="6"/><line x1="16" y1="6" x2="16.01" y2="6"/><line x1="12" y1="6" x2="12.01" y2="6"/><line x1="8" y1="9" x2="8.01" y2="9"/><line x1="16" y1="9" x2="16.01" y2="9"/><line x1="12" y1="9" x2="12.01" y2="9"/></>,
+        fileText: <><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></>,
+        checkCircle: <><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></>,
+        chevronDown: <polyline points="6 9 12 15 18 9"/>,
+        chevronRight: <polyline points="9 18 15 12 9 6"/>,
+        chevronLeft: <polyline points="15 18 9 12 15 6"/>,
+        search: <><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></>,
+        externalLink: <><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></>,
+        video: <><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></>,
+        download: <><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></>,
+        shield: <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>,
+        close: <><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></>,
+        clock: <><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></>
+      };
+
+      return (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width={size}
+          height={size}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke={color}
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className={className}
+        >
+          {icons[name] || null}
+        </svg>
+      );
+    };
+
+    // --- ANIMATED NUMBER COUNTER COMPONENT ---
+    const Counter = ({ target, decimals = 0, suffix = "" }) => {
+      const [count, setCount] = useState(0);
+
+      useEffect(() => {
+        let start = 0;
+        const duration = 1600;
+        const startTime = performance.now();
+
+        const update = (now) => {
+          const progress = Math.min((now - startTime) / duration, 1);
+          const easeProgress = 1 - Math.pow(1 - progress, 3);
+          const current = start + easeProgress * (target - start);
+          setCount(current);
+          if (progress < 1) {
+            requestAnimationFrame(update);
+          }
+        };
+
+        requestAnimationFrame(update);
+      }, [target]);
+
+      return (
+        <span>
+          {decimals > 0
+            ? count.toLocaleString('en-IN', { minimumFractionDigits: decimals, maximumFractionDigits: decimals })
+            : Math.floor(count).toLocaleString('en-IN')}
+          {suffix}
+        </span>
+      );
+    };
+
+    // --- APPLICATION ROOT COMPONENT ---
+    function App() {
+      const [page, setPage] = useState('home');
+      const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+      const [scrolled, setScrolled] = useState(false);
+      const [enquiryModalOpen, setEnquiryModalOpen] = useState(false);
+      const [enquirySubmitted, setEnquirySubmitted] = useState(false);
+      const [toastMsg, setToastMsg] = useState('');
+
+      // Hash-based routing synchronization
+      useEffect(() => {
+        const handleHashChange = () => {
+          const hash = window.location.hash.replace('#', '').trim();
+          if (hash && ['home', 'about', 'academics', 'admissions', 'faculty', 'facilities', 'events', 'gallery', 'notices', 'disclosure', 'contact'].includes(hash)) {
+            setPage(hash);
+          }
+        };
+
+        window.addEventListener('hashchange', handleHashChange);
+        if (window.location.hash) {
+          handleHashChange();
+        }
+
+        const handleScroll = () => {
+          setScrolled(window.scrollY > 30);
+        };
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+          window.removeEventListener('hashchange', handleHashChange);
+          window.removeEventListener('scroll', handleScroll);
+        };
+      }, []);
+
+      const navigate = (pageId) => {
+        setPage(pageId);
+        window.location.hash = pageId;
+        setMobileMenuOpen(false);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      };
+
+      const showToast = (msg) => {
+        setToastMsg(msg);
+        setTimeout(() => setToastMsg(''), 4000);
+      };
+
+      // Modal Enquiry Form State
+      const [formData, setFormData] = useState({
+        studentName: '',
+        parentName: '',
+        email: '',
+        phone: '',
+        grade: 'Class I - V',
+        message: ''
+      });
+      const [formErrors, setFormErrors] = useState({});
+
+      const handleEnquirySubmit = (e) => {
+        e.preventDefault();
+        const errors = {};
+        if (!formData.studentName.trim()) errors.studentName = 'Student name is required';
+        if (!formData.parentName.trim()) errors.parentName = 'Parent/Guardian name is required';
+        if (!formData.phone.trim() || formData.phone.length < 10) errors.phone = 'Valid 10-digit mobile number required';
+        if (!formData.email.trim() || !formData.email.includes('@')) errors.email = 'Valid email is required';
+
+        if (Object.keys(errors).length > 0) {
+          setFormErrors(errors);
+          return;
+        }
+
+        setFormErrors({});
+        setEnquirySubmitted(true);
+        setTimeout(() => {
+          setEnquirySubmitted(false);
+          setEnquiryModalOpen(false);
+          setFormData({ studentName: '', parentName: '', email: '', phone: '', grade: 'Class I - V', message: '' });
+          showToast('Enquiry details recorded (Frontend Demo). We will connect shortly!');
+        }, 2000);
+      };
+
+      return (
+        <div className="site-wrapper">
+          {/* Toast Notification */}
+          {toastMsg && (
+            <div style={{
+              position: 'fixed',
+              bottom: '24px',
+              right: '24px',
+              backgroundColor: '#0F2C59',
+              color: '#FFFFFF',
+              padding: '1rem 1.5rem',
+              borderRadius: '8px',
+              boxShadow: '0 10px 25px rgba(0,0,0,0.2)',
+              borderLeft: '4px solid #D4AF37',
+              zIndex: 9999,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.75rem',
+              fontSize: '0.925rem'
+            }}>
+              <Icon name="checkCircle" size={20} color="#D4AF37" />
+              <span>{toastMsg}</span>
+            </div>
+          )}
+
+          {/* Top Announcement Bar */}
+          <div className="topbar">
+            <div className="container">
+              <div className="topbar-info">
+                <span className="topbar-item">
+                  <Icon name="shield" size={14} color="#D4AF37" />
+                  <span>CBSE Affiliation No: <strong>{data.general.affiliationNo}</strong></span>
+                </span>
+                <span className="topbar-item">
+                  <span>School Code: <strong>{data.general.schoolCode}</strong></span>
+                </span>
+                <span className="topbar-item" style={{ color: '#93C5FD' }}>
+                  <Icon name="mapPin" size={13} color="#93C5FD" />
+                  <span>East Siang, Arunachal Pradesh</span>
+                </span>
+              </div>
+              <div className="topbar-contact">
+                <a href={`tel:${data.general.contact.phone}`}>
+                  <Icon name="phone" size={13} color="#D4AF37" />
+                  <span>{data.general.contact.phone}</span>
+                </a>
+                <a href={`mailto:${data.general.contact.email}`}>
+                  <Icon name="mail" size={13} color="#D4AF37" />
+                  <span>{data.general.contact.email}</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Sticky Header / Navbar */}
+          <header className={`site-header ${scrolled ? 'scrolled' : ''}`}>
+            <div className="container">
+              <nav className="navbar">
+                <a href="#home" onClick={(e) => { e.preventDefault(); navigate('home'); }} className="nav-brand">
+                  <img src="assets/logo/logo.svg" alt="Siang Royal School" className="nav-brand-logo" />
+                </a>
+
+                {/* Desktop Navigation Links */}
+                <ul className="nav-links">
+                  {[
+                    { id: 'home', label: 'Home' },
+                    { id: 'about', label: 'About' },
+                    { id: 'academics', label: 'Academics' },
+                    { id: 'admissions', label: 'Admissions' },
+                    { id: 'facilities', label: 'Campus' },
+                    { id: 'faculty', label: 'Faculty' },
+                    { id: 'events', label: 'Events' },
+                    { id: 'gallery', label: 'Gallery' },
+                    { id: 'notices', label: 'Notices' },
+                    { id: 'disclosure', label: 'CBSE SARAS' },
+                    { id: 'contact', label: 'Contact' }
+                  ].map((item) => (
+                    <li key={item.id}>
+                      <button
+                        onClick={() => navigate(item.id)}
+                        className={`nav-link ${page === item.id ? 'active' : ''}`}
+                      >
+                        {item.label}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Header Actions */}
+                <div className="nav-actions">
+                  <button
+                    onClick={() => setEnquiryModalOpen(true)}
+                    className="btn btn-secondary btn-sm btn-desktop"
+                  >
+                    Apply / Enquire
+                  </button>
+                  <button
+                    className={`mobile-nav-toggle ${mobileMenuOpen ? 'open' : ''}`}
+                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    aria-label="Toggle navigation menu"
+                  >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </button>
+                </div>
+              </nav>
+            </div>
+          </header>
+
+          {/* Mobile Navigation Drawer */}
+          <div
+            className={`mobile-drawer-backdrop ${mobileMenuOpen ? 'open' : ''}`}
+            onClick={() => setMobileMenuOpen(false)}
+          ></div>
+          <aside className={`mobile-drawer ${mobileMenuOpen ? 'open' : ''}`}>
+            <div className="mobile-drawer-header">
+              <img src="assets/logo/logo.svg" alt="Siang Royal School" style={{ height: '38px' }} />
+              <button
+                className="mobile-drawer-close"
+                onClick={() => setMobileMenuOpen(false)}
+                aria-label="Close menu"
+              >
+                &times;
+              </button>
+            </div>
+            <ul className="mobile-drawer-links">
+              {[
+                { id: 'home', label: 'Home' },
+                { id: 'about', label: 'About Us' },
+                { id: 'academics', label: 'Academics' },
+                { id: 'admissions', label: 'Admissions' },
+                { id: 'facilities', label: 'Campus & Facilities' },
+                { id: 'faculty', label: 'Faculty & Staff' },
+                { id: 'events', label: 'Events' },
+                { id: 'gallery', label: 'Gallery' },
+                { id: 'notices', label: 'Notices & Circulars' },
+                { id: 'disclosure', label: 'CBSE Mandatory Disclosure' },
+                { id: 'contact', label: 'Contact Us' }
+              ].map((item) => (
+                <li key={item.id}>
+                  <button
+                    onClick={() => navigate(item.id)}
+                    className={`mobile-drawer-link ${page === item.id ? 'active' : ''}`}
+                    style={{ width: '100%', textAlign: 'left', border: 'none', background: 'none' }}
+                  >
+                    <span>{item.label}</span>
+                    <Icon name="chevronRight" size={14} color="#94A3B8" />
+                  </button>
+                </li>
+              ))}
+            </ul>
+            <div style={{ marginTop: 'auto', paddingTop: '1.5rem', borderTop: '1px solid #E2E8F0' }}>
+              <button
+                onClick={() => { setMobileMenuOpen(false); setEnquiryModalOpen(true); }}
+                className="btn btn-primary"
+                style={{ width: '100%' }}
+              >
+                Apply / Enquire
+              </button>
+              <div style={{ marginTop: '1rem', fontSize: '0.8rem', color: '#64748B', textAlign: 'center' }}>
+                Affiliation: <strong>2230091</strong> | Code: <strong>35089</strong>
+              </div>
+            </div>
+          </aside>
+
+          {/* MAIN PAGE VIEW ROUTING */}
+          <main className="main-content">
+            {page === 'home' && <HomePage navigate={navigate} setEnquiryModalOpen={setEnquiryModalOpen} />}
+            {page === 'about' && <AboutPage navigate={navigate} />}
+            {page === 'academics' && <AcademicsPage navigate={navigate} />}
+            {page === 'admissions' && <AdmissionsPage navigate={navigate} setEnquiryModalOpen={setEnquiryModalOpen} showToast={showToast} />}
+            {page === 'faculty' && <FacultyPage />}
+            {page === 'facilities' && <FacilitiesPage />}
+            {page === 'events' && <EventsPage />}
+            {page === 'gallery' && <GalleryPage />}
+            {page === 'notices' && <NoticesPage />}
+            {page === 'disclosure' && <DisclosurePage />}
+            {page === 'contact' && <ContactPage showToast={showToast} />}
+          </main>
+
+          {/* Global Apply / Enquiry Modal */}
+          {enquiryModalOpen && (
+            <div className="modal-backdrop" onClick={(e) => { if (e.target.classList.contains('modal-backdrop')) setEnquiryModalOpen(false); }}>
+              <div className="modal-card">
+                <button className="modal-close-btn" onClick={() => setEnquiryModalOpen(false)}>&times;</button>
+                <div style={{ textAlign: 'left', marginBottom: '1.5rem' }}>
+                  <span className="section-badge">Admissions Desk</span>
+                  <h3 style={{ color: '#0F2C59', marginTop: '0.25rem' }}>Admission Enquiry 2026–27</h3>
+                  <p style={{ color: '#64748B', fontSize: '0.9rem', marginTop: '0.25rem' }}>
+                    Siang Royal School, Mirbuk Pekung (CBSE Affiliated 2230091)
+                  </p>
+                </div>
+
+                {enquirySubmitted ? (
+                  <div style={{ textAlign: 'center', padding: '2rem 1rem' }}>
+                    <div style={{ width: '60px', height: '60px', borderRadius: '50%', background: '#DCFCE7', color: '#166534', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem' }}>
+                      <Icon name="checkCircle" size={32} color="#166534" />
+                    </div>
+                    <h4 style={{ color: '#0F2C59', marginBottom: '0.5rem' }}>Enquiry Received Successfully!</h4>
+                    <p style={{ color: '#64748B', fontSize: '0.9rem' }}>
+                      Thank you for contacting Siang Royal School. Our admissions coordinator will reach out to you shortly.
+                    </p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleEnquirySubmit}>
+                    <div className="form-group">
+                      <label className="form-label">Student's Full Name *</label>
+                      <input
+                        type="text"
+                        className={`form-control ${formErrors.studentName ? 'error' : ''}`}
+                        placeholder="Enter student's full name"
+                        value={formData.studentName}
+                        onChange={(e) => setFormData({ ...formData, studentName: e.target.value })}
+                      />
+                      {formErrors.studentName && <span className="form-error-msg">{formErrors.studentName}</span>}
+                    </div>
+
+                    <div className="form-group">
+                      <label className="form-label">Parent / Guardian Name *</label>
+                      <input
+                        type="text"
+                        className={`form-control ${formErrors.parentName ? 'error' : ''}`}
+                        placeholder="Enter parent / guardian name"
+                        value={formData.parentName}
+                        onChange={(e) => setFormData({ ...formData, parentName: e.target.value })}
+                      />
+                      {formErrors.parentName && <span className="form-error-msg">{formErrors.parentName}</span>}
+                    </div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                      <div className="form-group">
+                        <label className="form-label">Contact Phone *</label>
+                        <input
+                          type="tel"
+                          className={`form-control ${formErrors.phone ? 'error' : ''}`}
+                          placeholder="10-digit mobile number"
+                          value={formData.phone}
+                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        />
+                        {formErrors.phone && <span className="form-error-msg">{formErrors.phone}</span>}
+                      </div>
+                      <div className="form-group">
+                        <label className="form-label">Email Address *</label>
+                        <input
+                          type="email"
+                          className={`form-control ${formErrors.email ? 'error' : ''}`}
+                          placeholder="name@example.com"
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        />
+                        {formErrors.email && <span className="form-error-msg">{formErrors.email}</span>}
+                      </div>
+                    </div>
+
+                    <div className="form-group">
+                      <label className="form-label">Class Seeking Admission</label>
+                      <select
+                        className="form-control"
+                        value={formData.grade}
+                        onChange={(e) => setFormData({ ...formData, grade: e.target.value })}
+                      >
+                        <option value="Primary (Class I - V)">Primary (Class I - V)</option>
+                        <option value="Middle School (Class VI - VIII)">Middle School (Class VI - VIII)</option>
+                        <option value="Secondary (Class IX - X)">Secondary (Class IX - X)</option>
+                        <option value="Senior Secondary (Class XI - XII)">Senior Secondary (Class XI - XII)</option>
+                      </select>
+                    </div>
+
+                    <div className="form-group">
+                      <label className="form-label">Optional Query or Remarks</label>
+                      <textarea
+                        className="form-control"
+                        rows="3"
+                        placeholder="Any specific questions regarding admissions, transport or curriculum..."
+                        value={formData.message}
+                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      ></textarea>
+                    </div>
+
+                    <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
+                      <button type="submit" className="btn btn-primary" style={{ flex: 1 }}>
+                        Submit Enquiry
+                      </button>
+                      <button type="button" onClick={() => setEnquiryModalOpen(false)} className="btn btn-outline" style={{ flex: '0 0 auto' }}>
+                        Cancel
+                      </button>
+                    </div>
+                    <p style={{ fontSize: '0.75rem', color: '#94A3B8', marginTop: '0.75rem', textAlign: 'center' }}>
+                      Note: This is a frontend demo validation form. Official enquiries can also be sent directly to <strong>siangroyalschool@gmail.com</strong>.
+                    </p>
+                  </form>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* SITE FOOTER */}
+          <footer className="site-footer">
+            <div className="footer-top">
+              <div className="container">
+                <div className="footer-grid">
+                  {/* Column 1: School Identity */}
+                  <div className="footer-brand">
+                    <img src="assets/logo/logo.svg" alt="Siang Royal School" style={{ height: '48px', filter: 'brightness(0) invert(1)' }} />
+                    <p>
+                      A premier CBSE institution fostering intellectual discipline, community growth, and academic excellence in the serene valley of East Siang, Arunachal Pradesh.
+                    </p>
+                    <div className="footer-affil-tag">
+                      <div>CBSE Affiliation No: <strong>{data.general.affiliationNo}</strong></div>
+                      <div>School Code: <strong>{data.general.schoolCode}</strong></div>
+                      <div style={{ marginTop: '0.35rem', color: '#93C5FD' }}>Appendix-IX SARAS 7.0 Compliant</div>
+                    </div>
+                  </div>
+
+                  {/* Column 2: School Links */}
+                  <div>
+                    <h4 className="footer-heading">School</h4>
+                    <ul className="footer-nav-list">
+                      <li><a href="#about" onClick={(e) => { e.preventDefault(); navigate('about'); }}>About SRS</a></li>
+                      <li><a href="#academics" onClick={(e) => { e.preventDefault(); navigate('academics'); }}>Academic Curriculum</a></li>
+                      <li><a href="#admissions" onClick={(e) => { e.preventDefault(); navigate('admissions'); }}>Admissions &amp; Process</a></li>
+                      <li><a href="#faculty" onClick={(e) => { e.preventDefault(); navigate('faculty'); }}>Faculty &amp; Staff (23)</a></li>
+                      <li><a href="#facilities" onClick={(e) => { e.preventDefault(); navigate('facilities'); }}>Campus &amp; Facilities</a></li>
+                    </ul>
+                  </div>
+
+                  {/* Column 3: Information & Compliance */}
+                  <div>
+                    <h4 className="footer-heading">Information</h4>
+                    <ul className="footer-nav-list">
+                      <li><a href="#disclosure" onClick={(e) => { e.preventDefault(); navigate('disclosure'); }}>CBSE SARAS 7.0 Disclosure</a></li>
+                      <li><a href="#notices" onClick={(e) => { e.preventDefault(); navigate('notices'); }}>Notices &amp; Circulars</a></li>
+                      <li><a href="#events" onClick={(e) => { e.preventDefault(); navigate('events'); }}>School Calendar &amp; Events</a></li>
+                      <li><a href="#gallery" onClick={(e) => { e.preventDefault(); navigate('gallery'); }}>Photo Gallery</a></li>
+                      <li><a href={data.academicsDisclosure[0].url} target="_blank" rel="noopener noreferrer">Fee Structure (PDF)</a></li>
+                    </ul>
+                  </div>
+
+                  {/* Column 4: Contact & Location */}
+                  <div className="footer-contact-col">
+                    <h4 className="footer-heading">Institutional Address</h4>
+                    <div className="footer-contact-item">
+                      <Icon name="mapPin" size={18} color="#D4AF37" />
+                      <span>{data.general.address.full}</span>
+                    </div>
+                    <div className="footer-contact-item">
+                      <Icon name="phone" size={18} color="#D4AF37" />
+                      <a href={`tel:${data.general.contact.phone}`} style={{ color: '#CBD5E1' }}>{data.general.contact.phone}</a>
+                    </div>
+                    <div className="footer-contact-item">
+                      <Icon name="mail" size={18} color="#D4AF37" />
+                      <a href={`mailto:${data.general.contact.email}`} style={{ color: '#CBD5E1' }}>{data.general.contact.email}</a>
+                    </div>
+                    <div className="footer-contact-item">
+                      <Icon name="clock" size={18} color="#D4AF37" />
+                      <span>{data.general.contact.officeHours}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Bar */}
+            <div className="footer-bottom">
+              <div className="container">
+                <div>
+                  &copy; 2026 Siang Royal School. All Rights Reserved.
+                </div>
+                <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
+                  <a href="#disclosure" onClick={(e) => { e.preventDefault(); navigate('disclosure'); }} style={{ color: '#CBD5E1' }}>SARAS 7.0 Disclosure</a>
+                  <span style={{ color: '#475569' }}>|</span>
+                  <span style={{ color: '#94A3B8' }}>East Siang, Arunachal Pradesh</span>
+                </div>
+              </div>
+            </div>
+          </footer>
+        </div>
+      );
+    }
+
+    // =========================================================================
+    // 1. HOME PAGE VIEW
+    // =========================================================================
+    function HomePage({ navigate, setEnquiryModalOpen }) {
+      return (
+        <div>
+          {/* HERO SECTION */}
+          <section className="hero">
+            <div className="container">
+              <div className="hero-grid">
+                <div className="hero-content">
+                  <div className="hero-badge">
+                    <Icon name="award" size={14} color="#D4AF37" />
+                    <span>CBSE AFFILIATED (NO. 2230091)</span>
+                  </div>
+                  <h1 className="hero-title">
+                    SIANG ROYAL SCHOOL
+                    <span>A Centre of Excellence</span>
+                  </h1>
+                  <p className="hero-motto">
+                    "Learning Today. Leading Tomorrow."
+                  </p>
+                  <p className="hero-desc">
+                    Situated in the picturesque valley of Mirbuk Pekung, East Siang, Siang Royal School provides a disciplined, modern, and holistic CBSE learning environment across a sprawling 14,136.70 sq. m campus.
+                  </p>
+                  <div className="hero-actions">
+                    <button onClick={() => navigate('about')} className="btn btn-secondary btn-lg">
+                      Explore School
+                      <Icon name="chevronRight" size={16} color="#0F172A" />
+                    </button>
+                    <button onClick={() => setEnquiryModalOpen(true)} className="btn btn-outline-white btn-lg">
+                      Admissions / Enquiry
+                    </button>
+                    <button onClick={() => navigate('disclosure')} className="btn btn-outline-white btn-lg">
+                      CBSE Disclosure
+                    </button>
+                  </div>
+                  <div className="hero-meta-strip">
+                    <div className="hero-meta-item">
+                      <Icon name="building" size={16} color="#D4AF37" />
+                      <span>School Code: <strong>{data.general.schoolCode}</strong></span>
+                    </div>
+                    <div className="hero-meta-item">
+                      <Icon name="users" size={16} color="#D4AF37" />
+                      <span>Teaching Ratio: <strong>{data.staffStats.teacherSectionRatio}</strong></span>
+                    </div>
+                    <div className="hero-meta-item">
+                      <Icon name="checkCircle" size={16} color="#10B981" />
+                      <span>Internet Facility: <strong>{data.infrastructure.internetFacility}</strong></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="hero-visual">
+                  <div className="hero-visual-frame">
+                    <img src="assets/images/hero/hero-campus.svg" alt="Siang Royal School Campus Architectural Illustration" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* QUICK INFORMATION STRIP WITH ANIMATED COUNTERS */}
+          <section className="stat-strip">
+            <div className="container">
+              <div className="stat-grid">
+                <div className="stat-card">
+                  <div className="stat-icon">
+                    <Icon name="shield" size={26} color="#0F2C59" />
+                  </div>
+                  <div className="stat-details">
+                    <span className="stat-value">{data.general.affiliationNo}</span>
+                    <span className="stat-label">CBSE Affiliation</span>
+                    <span className="stat-sub">Code: {data.general.schoolCode}</span>
+                  </div>
+                </div>
+
+                <div className="stat-card">
+                  <div className="stat-icon">
+                    <Icon name="building" size={26} color="#0F2C59" />
+                  </div>
+                  <div className="stat-details">
+                    <span className="stat-value">
+                      <Counter target={14136.70} decimals={2} suffix=" m²" />
+                    </span>
+                    <span className="stat-label">Campus Area</span>
+                    <span className="stat-sub">14,136.70 sq. meters</span>
+                  </div>
+                </div>
+
+                <div className="stat-card">
+                  <div className="stat-icon">
+                    <Icon name="book" size={26} color="#0F2C59" />
+                  </div>
+                  <div className="stat-details">
+                    <span className="stat-value">
+                      <Counter target={19} decimals={0} />
+                    </span>
+                    <span className="stat-label">Classrooms</span>
+                    <span className="stat-sub">Standard 60 sq. m each</span>
+                  </div>
+                </div>
+
+                <div className="stat-card">
+                  <div className="stat-icon">
+                    <Icon name="users" size={26} color="#0F2C59" />
+                  </div>
+                  <div className="stat-details">
+                    <span className="stat-value">
+                      <Counter target={23} decimals={0} />
+                    </span>
+                    <span className="stat-label">Teaching Staff</span>
+                    <span className="stat-sub">10 PGT • 6 TGT • 5 PRT</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* ABOUT SCHOOL PREVIEW */}
+          <section className="section">
+            <div className="container">
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3.5rem', alignItems: 'center' }}>
+                <div>
+                  <span className="section-badge">Welcome to SRS</span>
+                  <h2 className="section-title">An Academic Institution Built on Trust &amp; Excellence</h2>
+                  <p>
+                    Siang Royal School is an educational institution situated in <strong>Mirbuk Pekung, East Siang, Arunachal Pradesh - 791102</strong>, affiliated with the Central Board of Secondary Education (CBSE Affiliation No: 2230091).
+                  </p>
+                  <p style={{ color: '#64748B' }}>
+                    Explore the school's academic environment, infrastructure, and publicly available institutional information verified under the SARAS 7.0 regulatory framework. We provide modern classrooms, dedicated science and computer laboratories, and professional holistic support.
+                  </p>
+                  <div style={{ display: 'flex', gap: '1rem', marginTop: '1.75rem', flexWrap: 'wrap' }}>
+                    <button onClick={() => navigate('about')} className="btn btn-primary">
+                      Learn More About Us
+                      <Icon name="chevronRight" size={16} color="#FFFFFF" />
+                    </button>
+                    <button onClick={() => navigate('facilities')} className="btn btn-outline">
+                      Explore Campus
+                    </button>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="card" style={{ borderLeft: '4px solid #D4AF37' }}>
+                    <h3 style={{ color: '#0F2C59', marginBottom: '1rem', fontSize: '1.3rem' }}>Institutional Verification</h3>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '0.6rem', borderBottom: '1px solid #E2E8F0' }}>
+                        <span style={{ color: '#64748B' }}>CBSE Affiliation</span>
+                        <span className="verified-badge">No. 2230091</span>
+                      </div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '0.6rem', borderBottom: '1px solid #E2E8F0' }}>
+                        <span style={{ color: '#64748B' }}>School Code</span>
+                        <strong>35089</strong>
+                      </div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '0.6rem', borderBottom: '1px solid #E2E8F0' }}>
+                        <span style={{ color: '#64748B' }}>Principal</span>
+                        <strong>Ashish Pokhrel Chetr (MSc, B.Ed)</strong>
+                      </div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '0.6rem', borderBottom: '1px solid #E2E8F0' }}>
+                        <span style={{ color: '#64748B' }}>Campus Area</span>
+                        <strong>14,136.70 sq. m</strong>
+                      </div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <span style={{ color: '#64748B' }}>Laboratories</span>
+                        <strong>6 (56 sq. m each)</strong>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* PRINCIPAL PROFILE & MESSAGE SECTION */}
+          <section className="section section-alt">
+            <div className="container">
+              <div className="section-header">
+                <span className="section-badge">Leadership</span>
+                <h2 className="section-title">Message from the Principal</h2>
+                <p className="section-subtitle">Guiding educational vision and academic integrity at Siang Royal School</p>
+              </div>
+
+              <div className="principal-card-grid">
+                <div className="principal-portrait-wrapper">
+                  <img
+                    src="assets/images/faculty/principal-placeholder.svg"
+                    alt="Ashish Pokhrel Chetr, Principal of Siang Royal School"
+                    style={{ width: '100%', height: 'auto' }}
+                  />
+                </div>
+
+                <div className="principal-message-content">
+                  <blockquote>
+                    "At Siang Royal School, our mission is to cultivate an inspiring learning atmosphere where students build academic capability, moral resilience, and curious minds. With dedicated faculty, robust infrastructure, and strong adherence to CBSE values, we empower every learner to achieve their highest potential."
+                  </blockquote>
+                  <p style={{ color: '#64748B', fontSize: '0.95rem' }}>
+                    With a student-to-section ratio of 1:1.5 and dedicated wellness and special education specialists, we ensure that every student's intellectual and emotional journey is supported with professionalism and empathy.
+                  </p>
+
+                  <div className="principal-signature">
+                    <div className="principal-name">{data.general.principal.name}</div>
+                    <div className="principal-role">{data.general.principal.role}</div>
+                    <div className="principal-qual">Qualifications: {data.general.principal.qualification}</div>
+                    <div style={{ marginTop: '0.5rem', fontSize: '0.85rem', color: '#059669', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                      <Icon name="checkCircle" size={14} color="#059669" />
+                      <span>SARAS 7.0 Verified Institutional Principal</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* CAMPUS INFRASTRUCTURE INSPECTION VIDEO SECTION */}
+          <section className="section">
+            <div className="container">
+              <div className="section-header">
+                <span className="section-badge">Official Coverage</span>
+                <h2 className="section-title">School Infrastructure Inspection</h2>
+                <p className="section-subtitle">
+                  SARAS 7.0 Mandatory Public Disclosure Infrastructure Inspection Video
+                </p>
+              </div>
+
+              <div style={{ maxWidth: '880px', margin: '0 auto' }}>
+                <div className="video-container">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${data.general.inspectionVideo.embedId}`}
+                    title="Siang Royal School Infrastructure Inspection Video"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1rem', flexWrap: 'wrap', gap: '1rem' }}>
+                  <div style={{ fontSize: '0.875rem', color: '#64748B' }}>
+                    Source: Verified SARAS 7.0 Mandatory Disclosure Appendix-IX inspection submission
+                  </div>
+                  <a
+                    href={data.general.inspectionVideo.youtubeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-outline btn-sm"
+                  >
+                    Watch on YouTube
+                    <Icon name="externalLink" size={14} color="#0F2C59" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* NOTICES PREVIEW STRIP */}
+          <section className="section section-alt">
+            <div className="container">
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '2.5rem', flexWrap: 'wrap', gap: '1rem' }}>
+                <div>
+                  <span className="section-badge">Official Circulars</span>
+                  <h2 className="section-title" style={{ marginBottom: 0 }}>Latest Notices &amp; Announcements</h2>
+                </div>
+                <button onClick={() => navigate('notices')} className="btn btn-outline">
+                  View Notice Board ({data.notices.length})
+                  <Icon name="chevronRight" size={16} color="#0F2C59" />
+                </button>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem' }}>
+                {data.notices.slice(0, 3).map((notice) => (
+                  <div key={notice.id} className="card" style={{ display: 'flex', flexDirection: 'column' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
+                      <span className="section-badge" style={{ margin: 0, fontSize: '0.75rem' }}>{notice.category}</span>
+                      {notice.isNew && <span style={{ background: '#EF4444', color: '#FFF', fontSize: '0.7rem', padding: '0.2rem 0.5rem', borderRadius: '4px', fontWeight: '700' }}>NEW</span>}
+                    </div>
+                    <h4 style={{ color: '#0F2C59', marginBottom: '0.5rem' }}>{notice.title}</h4>
+                    <p style={{ color: '#64748B', fontSize: '0.875rem', flexGrow: 1 }}>{notice.summary}</p>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1rem', paddingTop: '0.75rem', borderTop: '1px solid #E2E8F0', fontSize: '0.8rem', color: '#94A3B8' }}>
+                      <span><Icon name="calendar" size={13} color="#94A3B8" /> {notice.date}</span>
+                      <a href={notice.file} target="_blank" rel="noopener noreferrer" style={{ color: '#0F2C59', fontWeight: '600' }}>
+                        View Document &rarr;
+                      </a>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* CALL TO ACTION */}
+          <section className="section section-primary" style={{ textAlign: 'center' }}>
+            <div className="container">
+              <span className="section-badge">Admissions 2026–27</span>
+              <h2 style={{ color: '#FFFFFF', marginBottom: '1rem' }}>Begin Your Educational Journey with Siang Royal School</h2>
+              <p style={{ color: '#CBD5E1', maxWidth: '650px', margin: '0 auto 2rem', fontSize: '1.1rem' }}>
+                Join our CBSE academic community in East Siang. Enquire now for admission details, curriculum overview, and campus tours.
+              </p>
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+                <button onClick={() => setEnquiryModalOpen(true)} className="btn btn-secondary btn-lg">
+                  Submit Admission Enquiry
+                </button>
+                <button onClick={() => navigate('contact')} className="btn btn-outline-white btn-lg">
+                  Contact School Office
+                </button>
+              </div>
+            </div>
+          </section>
+        </div>
+      );
+    }
+
+    // =========================================================================
+    // 2. ABOUT US PAGE VIEW
+    // =========================================================================
+    function AboutPage({ navigate }) {
+      return (
+        <div>
+          <div style={{ background: '#0F2C59', color: '#FFFFFF', padding: '4rem 0 3.5rem', textAlign: 'center' }}>
+            <div className="container">
+              <span className="section-badge" style={{ background: 'rgba(212, 175, 55, 0.2)', color: '#D4AF37', borderColor: 'rgba(212, 175, 55, 0.4)' }}>
+                About Our Institution
+              </span>
+              <h1 style={{ color: '#FFFFFF', marginTop: '0.5rem', marginBottom: '1rem' }}>About Siang Royal School</h1>
+              <p style={{ color: '#CBD5E1', maxWidth: '680px', margin: '0 auto', fontSize: '1.1rem' }}>
+                Affiliated with the Central Board of Secondary Education (CBSE Affiliation: 2230091 | Code: 35089), established in East Siang, Arunachal Pradesh.
+              </p>
+            </div>
+          </div>
+
+          <section className="section">
+            <div className="container">
+              <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: '3.5rem', alignItems: 'center' }}>
+                <div>
+                  <span className="section-badge">Institutional Identity</span>
+                  <h2 className="section-title">Educational Heritage in East Siang</h2>
+                  <p>
+                    <strong>Siang Royal School</strong> is situated at <strong>Mirbuk Pekung, East Siang, Arunachal Pradesh - 791102</strong>. The institution operates with a commitment to providing structured, progressive CBSE curriculum education to learners from primary to secondary levels.
+                  </p>
+                  <p style={{ color: '#64748B' }}>
+                    Explore the school's academic environment, infrastructure, and publicly available institutional information. Our sprawling 14,136.70 sq. meter campus provides peaceful, natural surroundings optimal for focused study, physical vigor, and intellectual development.
+                  </p>
+                  <div style={{ marginTop: '2rem', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+                    <div style={{ padding: '1.25rem', background: '#F8FAFC', borderRadius: '12px', border: '1px solid #E2E8F0' }}>
+                      <div style={{ color: '#D4AF37', fontWeight: '700', fontSize: '1.25rem', marginBottom: '0.25rem' }}>Excellence</div>
+                      <div style={{ fontSize: '0.875rem', color: '#64748B' }}>Rigorous academic foundations aligned with CBSE standards.</div>
+                    </div>
+                    <div style={{ padding: '1.25rem', background: '#F8FAFC', borderRadius: '12px', border: '1px solid #E2E8F0' }}>
+                      <div style={{ color: '#D4AF37', fontWeight: '700', fontSize: '1.25rem', marginBottom: '0.25rem' }}>Discipline</div>
+                      <div style={{ fontSize: '0.875rem', color: '#64748B' }}>Character building, punctuality, and moral accountability.</div>
+                    </div>
+                    <div style={{ padding: '1.25rem', background: '#F8FAFC', borderRadius: '12px', border: '1px solid #E2E8F0' }}>
+                      <div style={{ color: '#D4AF37', fontWeight: '700', fontSize: '1.25rem', marginBottom: '0.25rem' }}>Inclusion</div>
+                      <div style={{ fontSize: '0.875rem', color: '#64748B' }}>Specialized care with dedicated Special Educator &amp; Wellness counsellor.</div>
+                    </div>
+                    <div style={{ padding: '1.25rem', background: '#F8FAFC', borderRadius: '12px', border: '1px solid #E2E8F0' }}>
+                      <div style={{ color: '#D4AF37', fontWeight: '700', fontSize: '1.25rem', marginBottom: '0.25rem' }}>Community</div>
+                      <div style={{ fontSize: '0.875rem', color: '#64748B' }}>Rooted in the rich cultural ethos of Arunachal Pradesh.</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="card" style={{ padding: '2rem' }}>
+                    <h3 style={{ color: '#0F2C59', marginBottom: '1.25rem' }}>Verified Institutional Details</h3>
+                    <table style={{ width: '100%', fontSize: '0.9rem', borderCollapse: 'collapse' }}>
+                      <tbody>
+                        <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+                          <td style={{ padding: '0.75rem 0', color: '#64748B' }}>Affiliation No.</td>
+                          <td style={{ padding: '0.75rem 0', fontWeight: '700', color: '#0F2C59', textAlign: 'right' }}>2230091</td>
+                        </tr>
+                        <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+                          <td style={{ padding: '0.75rem 0', color: '#64748B' }}>School Code</td>
+                          <td style={{ padding: '0.75rem 0', fontWeight: '700', color: '#0F2C59', textAlign: 'right' }}>35089</td>
+                        </tr>
+                        <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+                          <td style={{ padding: '0.75rem 0', color: '#64748B' }}>Principal</td>
+                          <td style={{ padding: '0.75rem 0', fontWeight: '600', color: '#0F2C59', textAlign: 'right' }}>Ashish Pokhrel Chetr</td>
+                        </tr>
+                        <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+                          <td style={{ padding: '0.75rem 0', color: '#64748B' }}>Principal Qual.</td>
+                          <td style={{ padding: '0.75rem 0', color: '#0F2C59', textAlign: 'right' }}>MSc, B.Ed</td>
+                        </tr>
+                        <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+                          <td style={{ padding: '0.75rem 0', color: '#64748B' }}>Campus Area</td>
+                          <td style={{ padding: '0.75rem 0', color: '#0F2C59', textAlign: 'right' }}>14,136.70 sq. m</td>
+                        </tr>
+                        <tr style={{ borderBottom: '1px solid #E2E8F0' }}>
+                          <td style={{ padding: '0.75rem 0', color: '#64748B' }}>Total Teachers</td>
+                          <td style={{ padding: '0.75rem 0', color: '#0F2C59', textAlign: 'right' }}>23 (Ratio 1:1.5)</td>
+                        </tr>
+                        <tr>
+                          <td style={{ padding: '0.75rem 0', color: '#64748B' }}>Pin Code</td>
+                          <td style={{ padding: '0.75rem 0', color: '#0F2C59', textAlign: 'right' }}>791102 (Arunachal Pradesh)</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div style={{ marginTop: '1.5rem', textAlign: 'center' }}>
+                      <button onClick={() => navigate('disclosure')} className="btn btn-primary" style={{ width: '100%' }}>
+                        View CBSE SARAS Disclosure
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* LEADERSHIP PROFILE */}
+          <section className="section section-alt">
+            <div className="container">
+              <div className="section-header">
+                <span className="section-badge">Academic Head</span>
+                <h2 className="section-title">Institutional Leadership</h2>
+                <p className="section-subtitle">
+                  Academic guidance under Principal Ashish Pokhrel Chetr (MSc, B.Ed)
+                </p>
+              </div>
+
+              <div className="principal-card-grid">
+                <div className="principal-portrait-wrapper">
+                  <img src="assets/images/faculty/principal-placeholder.svg" alt="Principal Ashish Pokhrel Chetr" />
+                </div>
+                <div>
+                  <h3 style={{ color: '#0F2C59', fontSize: '1.5rem', marginBottom: '0.25rem' }}>Ashish Pokhrel Chetr</h3>
+                  <div style={{ color: '#D4AF37', fontWeight: '600', marginBottom: '1rem' }}>Principal | MSc, B.Ed</div>
+                  <p style={{ color: '#334155', lineHeight: '1.7', marginBottom: '1rem' }}>
+                    Leading the pedagogical direction and administrative compliance of Siang Royal School, Principal Ashish Pokhrel Chetr oversees the holistic growth of learners and the instructional standards of our 23 teaching staff members.
+                  </p>
+                  <p style={{ color: '#64748B', fontSize: '0.9rem', marginBottom: '1.5rem' }}>
+                    Institutional adherence to National Education Policy guidelines, CBSE directives, and health/safety compliances form the bedrock of daily operations.
+                  </p>
+                  <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                    <a href={`mailto:${data.general.contact.email}`} className="btn btn-outline btn-sm">
+                      <Icon name="mail" size={14} color="#0F2C59" />
+                      Email Office
+                    </a>
+                    <a href={`tel:${data.general.contact.phone}`} className="btn btn-outline btn-sm">
+                      <Icon name="phone" size={14} color="#0F2C59" />
+                      Contact Desk
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      );
+    }
+
+    // =========================================================================
+    // 3. ACADEMICS PAGE VIEW
+    // =========================================================================
+    function AcademicsPage({ navigate }) {
+      return (
+        <div>
+          <div style={{ background: '#0F2C59', color: '#FFFFFF', padding: '4rem 0 3.5rem', textAlign: 'center' }}>
+            <div className="container">
+              <span className="section-badge" style={{ background: 'rgba(212, 175, 55, 0.2)', color: '#D4AF37', borderColor: 'rgba(212, 175, 55, 0.4)' }}>
+                Curriculum &amp; Pedagogy
+              </span>
+              <h1 style={{ color: '#FFFFFF', marginTop: '0.5rem', marginBottom: '1rem' }}>Academic Program</h1>
+              <p style={{ color: '#CBD5E1', maxWidth: '680px', margin: '0 auto', fontSize: '1.1rem' }}>
+                Affiliated with CBSE, offering a structured educational trajectory focused on critical thinking, conceptual mastery, and ethical growth.
+              </p>
+            </div>
+          </div>
+
+          <section className="section">
+            <div className="container">
+              <div className="section-header">
+                <span className="section-badge">Academic Structure</span>
+                <h2 className="section-title">Educational Levels &amp; Curriculum</h2>
+                <p className="section-subtitle">Comprehensive schooling aligned with CBSE curriculum regulations</p>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
+                <div className="card">
+                  <div style={{ width: '48px', height: '48px', borderRadius: '10px', background: '#E0F2FE', color: '#0284C7', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
+                    <Icon name="book" size={24} color="#0284C7" />
+                  </div>
+                  <h3 style={{ color: '#0F2C59', marginBottom: '0.5rem' }}>Primary Wing</h3>
+                  <div style={{ color: '#D4AF37', fontWeight: '600', fontSize: '0.85rem', marginBottom: '0.75rem' }}>Classes I – V (PRT: 5 Teachers)</div>
+                  <p style={{ color: '#64748B', fontSize: '0.9rem' }}>
+                    Foundational numeracy, literacy, environmental consciousness, interactive play-based learning, and creative arts.
+                  </p>
+                </div>
+
+                <div className="card">
+                  <div style={{ width: '48px', height: '48px', borderRadius: '10px', background: '#FEF3C7', color: '#D97706', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
+                    <Icon name="award" size={24} color="#D97706" />
+                  </div>
+                  <h3 style={{ color: '#0F2C59', marginBottom: '0.5rem' }}>Middle School</h3>
+                  <div style={{ color: '#D4AF37', fontWeight: '600', fontSize: '0.85rem', marginBottom: '0.75rem' }}>Classes VI – VIII (TGT: 6 Teachers)</div>
+                  <p style={{ color: '#64748B', fontSize: '0.9rem' }}>
+                    Deeper inquiry across Mathematics, Science, Social Sciences, Languages, and introductory laboratory practicals.
+                  </p>
+                </div>
+
+                <div className="card">
+                  <div style={{ width: '48px', height: '48px', borderRadius: '10px', background: '#DCFCE7', color: '#16A34A', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
+                    <Icon name="building" size={24} color="#16A34A" />
+                  </div>
+                  <h3 style={{ color: '#0F2C59', marginBottom: '0.5rem' }}>Secondary &amp; Senior</h3>
+                  <div style={{ color: '#D4AF37', fontWeight: '600', fontSize: '0.85rem', marginBottom: '0.75rem' }}>Classes IX – XII (PGT: 10 Teachers)</div>
+                  <p style={{ color: '#64748B', fontSize: '0.9rem' }}>
+                    Board examination preparation adhering to CBSE syllabi, advanced laboratory sessions across 6 dedicated labs, and academic mentoring.
+                  </p>
+                </div>
+              </div>
+
+              {/* Academic Highlights & Official Calendar */}
+              <div style={{ marginTop: '3.5rem', background: '#F8FAFC', border: '1px solid #E2E8F0', borderRadius: '16px', padding: '2.5rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '2.5rem', alignItems: 'center' }}>
+                  <div>
+                    <span className="section-badge">Verified Document</span>
+                    <h3 style={{ color: '#0F2C59', marginBottom: '1rem' }}>Annual Academic Calendar</h3>
+                    <p style={{ color: '#64748B', fontSize: '0.95rem', marginBottom: '1.5rem' }}>
+                      Access the official school academic calendar detailing term assessments, scheduled vacations, and co-curricular milestones submitted in our SARAS disclosure.
+                    </p>
+                    <a
+                      href={data.academicsDisclosure[1].url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-primary"
+                    >
+                      <Icon name="download" size={16} color="#FFFFFF" />
+                      Download Academic Calendar (PDF)
+                    </a>
+                  </div>
+                  <div style={{ background: '#FFFFFF', padding: '1.5rem', borderRadius: '12px', border: '1px solid #CBD5E1' }}>
+                    <div style={{ fontWeight: '700', color: '#0F2C59', marginBottom: '0.5rem' }}>Teacher-to-Section Ratio</div>
+                    <div style={{ fontSize: '2rem', fontWeight: '800', color: '#D4AF37', fontFamily: 'Poppins, sans-serif' }}>1 : 1.5</div>
+                    <p style={{ fontSize: '0.825rem', color: '#64748B', marginTop: '0.25rem' }}>
+                      Ensuring attentive classroom management and individual mentoring across all grades.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      );
+    }
+
+    // =========================================================================
+    // 4. ADMISSIONS PAGE VIEW
+    // =========================================================================
+    function AdmissionsPage({ setEnquiryModalOpen, showToast }) {
+      const [activeFaq, setActiveFaq] = useState(0);
+
+      return (
+        <div>
+          <div style={{ background: '#0F2C59', color: '#FFFFFF', padding: '4rem 0 3.5rem', textAlign: 'center' }}>
+            <div className="container">
+              <span className="section-badge" style={{ background: 'rgba(212, 175, 55, 0.2)', color: '#D4AF37', borderColor: 'rgba(212, 175, 55, 0.4)' }}>
+                Admissions 2026–27
+              </span>
+              <h1 style={{ color: '#FFFFFF', marginTop: '0.5rem', marginBottom: '1rem' }}>Admissions &amp; Enrollment</h1>
+              <p style={{ color: '#CBD5E1', maxWidth: '680px', margin: '0 auto', fontSize: '1.1rem' }}>
+                Join the Siang Royal School academic fraternity. Clear guidance and verifiable procedures for aspiring students.
+              </p>
+            </div>
+          </div>
+
+          {/* 5-STEP ADMISSION PROCESS TIMELINE */}
+          <section className="section">
+            <div className="container">
+              <div className="section-header">
+                <span className="section-badge">Guideline Timeline</span>
+                <h2 className="section-title">5-Step Admission Process</h2>
+                <p className="section-subtitle">
+                  {/* [ADMISSION PROCESS GUIDELINE - SUBJECT TO SCHOOL POLICY] */}
+                  Structured pathway from initial enquiry to confirmed student enrollment.
+                </p>
+              </div>
+
+              <div className="timeline-grid">
+                {[
+                  { step: "01", title: "Enquiry", desc: "Submit an admission enquiry online or visit the school administrative office at Mirbuk Pekung." },
+                  { step: "02", title: "Application", desc: "Obtain and complete the official admission registration form along with required student documents." },
+                  { step: "03", title: "Interaction", desc: "Informal student and parent interaction with the academic committee and school principal." },
+                  { step: "04", title: "Selection", desc: "Merit-based admission confirmation communicated via registered phone / email." },
+                  { step: "05", title: "Admission", desc: "Fee deposit as per official schedule and issuance of student admission number." }
+                ].map((item, idx) => (
+                  <div key={idx} className="timeline-step-card">
+                    <div className="timeline-num">{item.step}</div>
+                    <h3 className="timeline-step-title">{item.title}</h3>
+                    <p className="timeline-step-desc">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* REQUIRED DOCUMENTS & FEE STRUCTURE CARDS */}
+              <div style={{ marginTop: '3.5rem', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+                <div className="card">
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
+                    <Icon name="fileText" size={24} color="#0F2C59" />
+                    <h3 style={{ color: '#0F2C59', margin: 0 }}>Required Documents Checklist</h3>
+                  </div>
+                  <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.75rem', fontSize: '0.925rem' }}>
+                    <li style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                      <Icon name="checkCircle" size={16} color="#10B981" />
+                      <span>Original Transfer Certificate (TC) from previous recognized school</span>
+                    </li>
+                    <li style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                      <Icon name="checkCircle" size={16} color="#10B981" />
+                      <span>Official Birth Certificate issued by Municipal / Govt. Authority</span>
+                    </li>
+                    <li style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                      <Icon name="checkCircle" size={16} color="#10B981" />
+                      <span>Previous class academic report card / marks statement</span>
+                    </li>
+                    <li style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                      <Icon name="checkCircle" size={16} color="#10B981" />
+                      <span>Recent passport-size color photographs of student &amp; parents</span>
+                    </li>
+                    <li style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                      <Icon name="checkCircle" size={16} color="#10B981" />
+                      <span>Copy of Aadhaar card of student and parents / guardian</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="card" style={{ background: '#F8FAFC', border: '1px solid #CBD5E1' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
+                    <Icon name="award" size={24} color="#D4AF37" />
+                    <h3 style={{ color: '#0F2C59', margin: 0 }}>Official Fee Schedule</h3>
+                  </div>
+                  <p style={{ color: '#64748B', fontSize: '0.925rem', marginBottom: '1.5rem' }}>
+                    Siang Royal School maintains transparent, regulatory-compliant fee schedules as disclosed under Section C of the CBSE SARAS disclosure document.
+                  </p>
+                  <div style={{ background: '#FFFFFF', padding: '1rem 1.25rem', borderRadius: '8px', border: '1px solid #E2E8F0', marginBottom: '1.5rem' }}>
+                    <div style={{ fontWeight: '600', color: '#0F2C59' }}>Fee Structure Document</div>
+                    <div style={{ fontSize: '0.8rem', color: '#64748B' }}>Verified Session Fee File</div>
+                  </div>
+                  <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                    <a
+                      href={data.academicsDisclosure[0].url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-primary btn-sm"
+                    >
+                      <Icon name="download" size={14} color="#FFFFFF" />
+                      Download Fee Structure (PDF)
+                    </a>
+                    <button onClick={() => setEnquiryModalOpen(true)} className="btn btn-secondary btn-sm">
+                      Enquire Online
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* ADMISSION FAQS ACCORDION */}
+          <section className="section section-alt">
+            <div className="container">
+              <div className="section-header">
+                <span className="section-badge">Frequently Asked Questions</span>
+                <h2 className="section-title">Admissions &amp; School FAQs</h2>
+                <p className="section-subtitle">Common queries regarding eligibility, enrollment, and school policies</p>
+              </div>
+
+              <div className="faq-list">
+                {data.faqs.map((faq, idx) => (
+                  <div key={idx} className={`faq-item ${activeFaq === idx ? 'active' : ''}`}>
+                    <button
+                      className="faq-question"
+                      onClick={() => setActiveFaq(activeFaq === idx ? -1 : idx)}
+                      aria-expanded={activeFaq === idx}
+                    >
+                      <span>{faq.q}</span>
+                      <Icon name="chevronDown" size={18} className="faq-icon" />
+                    </button>
+                    <div className="faq-answer">
+                      {faq.a}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        </div>
+      );
+    }
+
+    // =========================================================================
+    // 5. FACULTY & STAFF PAGE VIEW
+    // =========================================================================
+    function FacultyPage() {
+      return (
+        <div>
+          <div style={{ background: '#0F2C59', color: '#FFFFFF', padding: '4rem 0 3.5rem', textAlign: 'center' }}>
+            <div className="container">
+              <span className="section-badge" style={{ background: 'rgba(212, 175, 55, 0.2)', color: '#D4AF37', borderColor: 'rgba(212, 175, 55, 0.4)' }}>
+                Academic Mentors
+              </span>
+              <h1 style={{ color: '#FFFFFF', marginTop: '0.5rem', marginBottom: '1rem' }}>Faculty &amp; Staff</h1>
+              <p style={{ color: '#CBD5E1', maxWidth: '680px', margin: '0 auto', fontSize: '1.1rem' }}>
+                Verified teaching staff statistics and specialist personnel compliant with SARAS 7.0 standards.
+              </p>
+            </div>
+          </div>
+
+          <section className="section">
+            <div className="container">
+              {/* VERIFIED STAFF METRICS CARDS */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.25rem', marginBottom: '3.5rem' }}>
+                <div className="card" style={{ textAlign: 'center', borderTop: '4px solid #0F2C59' }}>
+                  <div style={{ fontSize: '2.5rem', fontWeight: '800', color: '#0F2C59', fontFamily: 'Poppins, sans-serif' }}>{data.staffStats.totalTeachers}</div>
+                  <div style={{ fontWeight: '600', color: '#334155' }}>Total Teachers</div>
+                  <div style={{ fontSize: '0.8rem', color: '#64748B' }}>Verified Teaching Strength</div>
+                </div>
+
+                <div className="card" style={{ textAlign: 'center', borderTop: '4px solid #D4AF37' }}>
+                  <div style={{ fontSize: '2.5rem', fontWeight: '800', color: '#D4AF37', fontFamily: 'Poppins, sans-serif' }}>{data.staffStats.pgt}</div>
+                  <div style={{ fontWeight: '600', color: '#334155' }}>PGT Teachers</div>
+                  <div style={{ fontSize: '0.8rem', color: '#64748B' }}>Post Graduate Trained</div>
+                </div>
+
+                <div className="card" style={{ textAlign: 'center', borderTop: '4px solid #1E6091' }}>
+                  <div style={{ fontSize: '2.5rem', fontWeight: '800', color: '#1E6091', fontFamily: 'Poppins, sans-serif' }}>{data.staffStats.tgt}</div>
+                  <div style={{ fontWeight: '600', color: '#334155' }}>TGT Teachers</div>
+                  <div style={{ fontSize: '0.8rem', color: '#64748B' }}>Trained Graduate Teachers</div>
+                </div>
+
+                <div className="card" style={{ textAlign: 'center', borderTop: '4px solid #10B981' }}>
+                  <div style={{ fontSize: '2.5rem', fontWeight: '800', color: '#10B981', fontFamily: 'Poppins, sans-serif' }}>{data.staffStats.prt}</div>
+                  <div style={{ fontWeight: '600', color: '#334155' }}>PRT Teachers</div>
+                  <div style={{ fontSize: '0.8rem', color: '#64748B' }}>Primary Teachers</div>
+                </div>
+
+                <div className="card" style={{ textAlign: 'center', borderTop: '4px solid #6366F1' }}>
+                  <div style={{ fontSize: '2.5rem', fontWeight: '800', color: '#6366F1', fontFamily: 'Poppins, sans-serif' }}>{data.staffStats.teacherSectionRatio}</div>
+                  <div style={{ fontWeight: '600', color: '#334155' }}>Section Ratio</div>
+                  <div style={{ fontSize: '0.8rem', color: '#64748B' }}>Teacher Section Ratio</div>
+                </div>
+              </div>
+
+              {/* VERIFIED KEY STAFF MEMBERS */}
+              <div className="section-header">
+                <span className="section-badge">Verified Personnel</span>
+                <h2 className="section-title">Institutional Leadership &amp; Specialists</h2>
+                <p className="section-subtitle">Official appointed personnel registered in SARAS 7.0 disclosure</p>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
+                {/* Principal Card */}
+                <div className="card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+                  <div style={{ width: '120px', height: '120px', borderRadius: '50%', overflow: 'hidden', border: '3px solid #D4AF37', marginBottom: '1.25rem' }}>
+                    <img src="assets/images/faculty/principal-placeholder.svg" alt="Principal Ashish Pokhrel Chetr" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  </div>
+                  <span className="section-badge" style={{ margin: '0 0 0.5rem 0' }}>Institutional Head</span>
+                  <h3 style={{ color: '#0F2C59', marginBottom: '0.25rem' }}>{data.general.principal.name}</h3>
+                  <div style={{ color: '#D4AF37', fontWeight: '600', fontSize: '0.9rem', marginBottom: '0.5rem' }}>Principal</div>
+                  <div style={{ fontSize: '0.875rem', color: '#64748B', marginBottom: '1rem' }}>Qualifications: {data.general.principal.qualification}</div>
+                  <p style={{ fontSize: '0.875rem', color: '#475569' }}>
+                    Overseeing complete academic development, teacher mentoring, and regulatory CBSE compliance.
+                  </p>
+                </div>
+
+                {/* Special Educator Card */}
+                <div className="card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+                  <div style={{ width: '120px', height: '120px', borderRadius: '50%', background: '#EFF6FF', border: '3px solid #3B82F6', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.25rem', color: '#1D4ED8' }}>
+                    <Icon name="award" size={48} color="#1D4ED8" />
+                  </div>
+                  <span className="section-badge" style={{ margin: '0 0 0.5rem 0' }}>Inclusive Education</span>
+                  <h3 style={{ color: '#0F2C59', marginBottom: '0.25rem' }}>{data.general.specialStaff[0].name}</h3>
+                  <div style={{ color: '#1D4ED8', fontWeight: '600', fontSize: '0.9rem', marginBottom: '0.5rem' }}>{data.general.specialStaff[0].role}</div>
+                  <div style={{ fontSize: '0.875rem', color: '#64748B', marginBottom: '1rem' }}>Verified in SARAS Section D</div>
+                  <p style={{ fontSize: '0.875rem', color: '#475569' }}>
+                    Dedicated educator providing inclusive educational interventions, personalized learning support, and differentiated instruction.
+                  </p>
+                </div>
+
+                {/* Counsellor Card */}
+                <div className="card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+                  <div style={{ width: '120px', height: '120px', borderRadius: '50%', background: '#ECFDF5', border: '3px solid #10B981', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.25rem', color: '#047857' }}>
+                    <Icon name="users" size={48} color="#047857" />
+                  </div>
+                  <span className="section-badge" style={{ margin: '0 0 0.5rem 0' }}>Student Well-being</span>
+                  <h3 style={{ color: '#0F2C59', marginBottom: '0.25rem' }}>{data.general.specialStaff[1].name}</h3>
+                  <div style={{ color: '#047857', fontWeight: '600', fontSize: '0.9rem', marginBottom: '0.5rem' }}>{data.general.specialStaff[1].role}</div>
+                  <div style={{ fontSize: '0.875rem', color: '#64748B', marginBottom: '1rem' }}>Verified in SARAS Section D</div>
+                  <p style={{ fontSize: '0.875rem', color: '#475569' }}>
+                    Promoting mental wellness, adolescent guidance, examination stress relief, and holistic emotional health for students.
+                  </p>
+                </div>
+              </div>
+
+              {/* NOTE REGARDING REMAINING FACULTY */}
+              <div style={{ marginTop: '3.5rem', background: '#F8FAFC', border: '1px dashed #CBD5E1', borderRadius: '12px', padding: '1.75rem', textAlign: 'center' }}>
+                <p style={{ color: '#64748B', fontSize: '0.9rem', margin: 0 }}>
+                  <strong>Source of Truth Adherence:</strong> Individual names of remaining teaching faculty are maintained on school service records and are not fabricated. Total teaching strength is officially certified at <strong>23 teachers</strong> (10 PGT, 6 TGT, 5 PRT).
+                </p>
+              </div>
+            </div>
+          </section>
+        </div>
+      );
+    }
+
+    // =========================================================================
+    // 6. FACILITIES PAGE VIEW
+    // =========================================================================
+    function FacilitiesPage() {
+      return (
+        <div>
+          <div style={{ background: '#0F2C59', color: '#FFFFFF', padding: '4rem 0 3.5rem', textAlign: 'center' }}>
+            <div className="container">
+              <span className="section-badge" style={{ background: 'rgba(212, 175, 55, 0.2)', color: '#D4AF37', borderColor: 'rgba(212, 175, 55, 0.4)' }}>
+                Campus &amp; Infrastructure
+              </span>
+              <h1 style={{ color: '#FFFFFF', marginTop: '0.5rem', marginBottom: '1rem' }}>School Facilities</h1>
+              <p style={{ color: '#CBD5E1', maxWidth: '680px', margin: '0 auto', fontSize: '1.1rem' }}>
+                Spacious 14,136.70 sq. meter educational environment equipped with standardized learning and hygiene facilities.
+              </p>
+            </div>
+          </div>
+
+          <section className="section">
+            <div className="container">
+              {/* FACILITY STAT METRICS */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginBottom: '3.5rem' }}>
+                <div className="card">
+                  <img src="assets/images/campus/campus-area.svg" alt="14,136.70 sq. m Campus Area" style={{ borderRadius: '8px', marginBottom: '1rem' }} />
+                  <h3 style={{ color: '#0F2C59', marginBottom: '0.25rem' }}>Total Campus Area</h3>
+                  <div style={{ fontSize: '1.75rem', fontWeight: '800', color: '#D4AF37', fontFamily: 'Poppins, sans-serif' }}>14,136.70 sq. m</div>
+                  <p style={{ color: '#64748B', fontSize: '0.875rem', marginTop: '0.5rem' }}>
+                    Expansive open grounds, play areas, and academic blocks situated in scenic Mirbuk Pekung.
+                  </p>
+                </div>
+
+                <div className="card">
+                  <img src="assets/images/campus/classroom.svg" alt="19 Standard Classrooms" style={{ borderRadius: '8px', marginBottom: '1rem' }} />
+                  <h3 style={{ color: '#0F2C59', marginBottom: '0.25rem' }}>Standard Classrooms</h3>
+                  <div style={{ fontSize: '1.75rem', fontWeight: '800', color: '#0F2C59', fontFamily: 'Poppins, sans-serif' }}>19 Classrooms</div>
+                  <p style={{ color: '#64748B', fontSize: '0.875rem', marginTop: '0.5rem' }}>
+                    Standard dimension of <strong>60 sq. meters</strong> each, offering optimal light, airflow, and modern seating.
+                  </p>
+                </div>
+
+                <div className="card">
+                  <img src="assets/images/campus/laboratory.svg" alt="6 Laboratories" style={{ borderRadius: '8px', marginBottom: '1rem' }} />
+                  <h3 style={{ color: '#0F2C59', marginBottom: '0.25rem' }}>Laboratories &amp; Tech</h3>
+                  <div style={{ fontSize: '1.75rem', fontWeight: '800', color: '#0284C7', fontFamily: 'Poppins, sans-serif' }}>6 Laboratories</div>
+                  <p style={{ color: '#64748B', fontSize: '0.875rem', marginTop: '0.5rem' }}>
+                    Dedicated science and computer laboratories measuring <strong>56 sq. meters</strong> each for experimental learning.
+                  </p>
+                </div>
+
+                <div className="card">
+                  <img src="assets/images/campus/sanitation.svg" alt="Sanitation and Toilet Facilities" style={{ borderRadius: '8px', marginBottom: '1rem' }} />
+                  <h3 style={{ color: '#0F2C59', marginBottom: '0.25rem' }}>Sanitation Facilities</h3>
+                  <div style={{ fontSize: '1.75rem', fontWeight: '800', color: '#10B981', fontFamily: 'Poppins, sans-serif' }}>5 Girls / 5 Boys</div>
+                  <p style={{ color: '#64748B', fontSize: '0.875rem', marginTop: '0.5rem' }}>
+                    Hygienic, separate toilet blocks for girls (5) and boys (5) with safe drinking water certified by health authorities.
+                  </p>
+                </div>
+              </div>
+
+              {/* INSPECTION VIDEO SECTION */}
+              <div className="section-header">
+                <span className="section-badge">SARAS 7.0 Inspection Video</span>
+                <h2 className="section-title">Official Video Tour of Infrastructure</h2>
+                <p className="section-subtitle">Verified video footage submitted to the CBSE inspection board</p>
+              </div>
+
+              <div style={{ maxWidth: '880px', margin: '0 auto' }}>
+                <div className="video-container">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${data.general.inspectionVideo.embedId}`}
+                    title="Siang Royal School Infrastructure Inspection Video"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      );
+    }
+
+    // =========================================================================
+    // 7. EVENTS PAGE VIEW
+    // =========================================================================
+    function EventsPage() {
+      const [filter, setFilter] = useState('All');
+      const [selectedEvent, setSelectedEvent] = useState(null);
+
+      const filteredEvents = filter === 'All'
+        ? data.events
+        : data.events.filter(e => e.category === filter);
+
+      return (
+        <div>
+          <div style={{ background: '#0F2C59', color: '#FFFFFF', padding: '4rem 0 3.5rem', textAlign: 'center' }}>
+            <div className="container">
+              <span className="section-badge" style={{ background: 'rgba(212, 175, 55, 0.2)', color: '#D4AF37', borderColor: 'rgba(212, 175, 55, 0.4)' }}>
+                School Life &amp; Calendar
+              </span>
+              <h1 style={{ color: '#FFFFFF', marginTop: '0.5rem', marginBottom: '1rem' }}>School Events &amp; Activities</h1>
+              <p style={{ color: '#CBD5E1', maxWidth: '680px', margin: '0 auto', fontSize: '1.1rem' }}>
+                Academic milestones, sports tournaments, and cultural celebrations at Siang Royal School.
+              </p>
+            </div>
+          </div>
+
+          <section className="section">
+            <div className="container">
+              {/* Category Filter Tabs */}
+              <div className="filter-tabs">
+                {['All', 'Academic', 'Sports', 'Cultural', 'Celebrations'].map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => setFilter(cat)}
+                    className={`filter-tab ${filter === cat ? 'active' : ''}`}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+
+              {/* Event Cards Grid */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
+                {filteredEvents.map((evt) => (
+                  <div key={evt.id} className="card" style={{ display: 'flex', flexDirection: 'column', padding: '0', overflow: 'hidden' }}>
+                    <div style={{ height: '200px', overflow: 'hidden', position: 'relative' }}>
+                      <img src={evt.image} alt={evt.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      <div style={{ position: 'absolute', top: '12px', right: '12px', background: 'rgba(15, 44, 89, 0.85)', color: '#FFFFFF', padding: '0.35rem 0.75rem', borderRadius: '6px', fontSize: '0.75rem', fontWeight: '700' }}>
+                        {evt.category}
+                      </div>
+                    </div>
+                    <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#D4AF37', fontSize: '0.85rem', fontWeight: '600', marginBottom: '0.5rem' }}>
+                        <Icon name="calendar" size={14} color="#D4AF37" />
+                        <span>{evt.date}</span>
+                      </div>
+                      <h3 style={{ color: '#0F2C59', fontSize: '1.2rem', marginBottom: '0.75rem' }}>{evt.title}</h3>
+                      <p style={{ color: '#64748B', fontSize: '0.9rem', flexGrow: 1 }}>{evt.description}</p>
+                      
+                      <div style={{ marginTop: '1rem', paddingTop: '0.75rem', borderTop: '1px solid #E2E8F0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span style={{ fontSize: '0.75rem', color: '#94A3B8', fontStyle: 'italic' }}>{evt.note}</span>
+                        <button onClick={() => setSelectedEvent(evt)} className="btn btn-outline btn-sm">
+                          Details
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Event Modal View */}
+              {selectedEvent && (
+                <div className="modal-backdrop" onClick={(e) => { if (e.target.classList.contains('modal-backdrop')) setSelectedEvent(null); }}>
+                  <div className="modal-card">
+                    <button className="modal-close-btn" onClick={() => setSelectedEvent(null)}>&times;</button>
+                    <img src={selectedEvent.image} alt={selectedEvent.title} style={{ borderRadius: '12px', marginBottom: '1.25rem', width: '100%', maxHeight: '250px', objectFit: 'cover' }} />
+                    <span className="section-badge">{selectedEvent.category}</span>
+                    <h3 style={{ color: '#0F2C59', margin: '0.5rem 0' }}>{selectedEvent.title}</h3>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#D4AF37', fontWeight: '600', marginBottom: '1rem' }}>
+                      <Icon name="calendar" size={16} color="#D4AF37" />
+                      <span>{selectedEvent.date}</span>
+                    </div>
+                    <p style={{ color: '#334155', lineHeight: '1.7', marginBottom: '1.5rem' }}>{selectedEvent.description}</p>
+                    <div style={{ background: '#F8FAFC', padding: '0.85rem 1rem', borderRadius: '8px', border: '1px dashed #CBD5E1', fontSize: '0.8rem', color: '#64748B' }}>
+                      Status: <strong>{selectedEvent.note}</strong>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </section>
+        </div>
+      );
+    }
+
+    // =========================================================================
+    // 8. GALLERY PAGE VIEW
+    // =========================================================================
+    function GalleryPage() {
+      const [filter, setFilter] = useState('All');
+      const [lightboxIdx, setLightboxIdx] = useState(null);
+
+      const filteredGallery = filter === 'All'
+        ? data.gallery
+        : data.gallery.filter(g => g.category === filter);
+
+      // Keyboard navigation for lightbox
+      useEffect(() => {
+        const handleKeyDown = (e) => {
+          if (lightboxIdx === null) return;
+          if (e.key === 'Escape') setLightboxIdx(null);
+          if (e.key === 'ArrowRight') setLightboxIdx((lightboxIdx + 1) % filteredGallery.length);
+          if (e.key === 'ArrowLeft') setLightboxIdx((lightboxIdx - 1 + filteredGallery.length) % filteredGallery.length);
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+      }, [lightboxIdx, filteredGallery]);
+
+      return (
+        <div>
+          <div style={{ background: '#0F2C59', color: '#FFFFFF', padding: '4rem 0 3.5rem', textAlign: 'center' }}>
+            <div className="container">
+              <span className="section-badge" style={{ background: 'rgba(212, 175, 55, 0.2)', color: '#D4AF37', borderColor: 'rgba(212, 175, 55, 0.4)' }}>
+                Visual Showcase
+              </span>
+              <h1 style={{ color: '#FFFFFF', marginTop: '0.5rem', marginBottom: '1rem' }}>Campus Photo Gallery</h1>
+              <p style={{ color: '#CBD5E1', maxWidth: '680px', margin: '0 auto', fontSize: '1.1rem' }}>
+                Explore the academic, sports, and infrastructural life of Siang Royal School in East Siang.
+              </p>
+            </div>
+          </div>
+
+          <section className="section">
+            <div className="container">
+              {/* Filter Tabs */}
+              <div className="filter-tabs">
+                {['All', 'Campus', 'Academic', 'Sports', 'Activities'].map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => { setFilter(cat); setLightboxIdx(null); }}
+                    className={`filter-tab ${filter === cat ? 'active' : ''}`}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+
+              {/* Gallery Grid */}
+              <div className="gallery-grid">
+                {filteredGallery.map((item, idx) => (
+                  <div
+                    key={item.id}
+                    className="gallery-card"
+                    onClick={() => setLightboxIdx(idx)}
+                  >
+                    <div className="gallery-image-wrapper">
+                      <img src={item.image} alt={item.title} />
+                      <div className="gallery-overlay">
+                        <span className="gallery-badge">{item.category}</span>
+                        <h4 className="gallery-title">{item.title}</h4>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Lightbox Modal */}
+              {lightboxIdx !== null && filteredGallery[lightboxIdx] && (
+                <div className="lightbox-modal" onClick={(e) => { if (e.target.classList.contains('lightbox-modal')) setLightboxIdx(null); }}>
+                  <button className="lightbox-close" onClick={() => setLightboxIdx(null)}>&times;</button>
+                  <button
+                    className="lightbox-nav-btn lightbox-prev"
+                    onClick={(e) => { e.stopPropagation(); setLightboxIdx((lightboxIdx - 1 + filteredGallery.length) % filteredGallery.length); }}
+                    aria-label="Previous image"
+                  >
+                    &#10094;
+                  </button>
+
+                  <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+                    <div className="lightbox-img-wrap">
+                      <img src={filteredGallery[lightboxIdx].image} alt={filteredGallery[lightboxIdx].title} />
+                    </div>
+                    <div className="lightbox-details">
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <div>
+                          <span className="gallery-badge">{filteredGallery[lightboxIdx].category}</span>
+                          <h3 style={{ color: '#0F2C59', margin: '0.25rem 0' }}>{filteredGallery[lightboxIdx].title}</h3>
+                          <p style={{ color: '#64748B', fontSize: '0.875rem', margin: 0 }}>{filteredGallery[lightboxIdx].caption}</p>
+                        </div>
+                        <div style={{ color: '#94A3B8', fontSize: '0.85rem' }}>
+                          {lightboxIdx + 1} / {filteredGallery.length}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button
+                    className="lightbox-nav-btn lightbox-next"
+                    onClick={(e) => { e.stopPropagation(); setLightboxIdx((lightboxIdx + 1) % filteredGallery.length); }}
+                    aria-label="Next image"
+                  >
+                    &#10094;
+                  </button>
+                </div>
+              )}
+            </div>
+          </section>
+        </div>
+      );
+    }
+
+    // =========================================================================
+    // 9. NOTICES & CIRCULARS PAGE VIEW
+    // =========================================================================
+    function NoticesPage() {
+      const [searchQuery, setSearchQuery] = useState('');
+      const [category, setCategory] = useState('All');
+
+      const filteredNotices = data.notices.filter((n) => {
+        const matchesCat = category === 'All' || n.category === category;
+        const matchesSearch = n.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                              n.summary.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesCat && matchesSearch;
+      });
+
+      return (
+        <div>
+          <div style={{ background: '#0F2C59', color: '#FFFFFF', padding: '4rem 0 3.5rem', textAlign: 'center' }}>
+            <div className="container">
+              <span className="section-badge" style={{ background: 'rgba(212, 175, 55, 0.2)', color: '#D4AF37', borderColor: 'rgba(212, 175, 55, 0.4)' }}>
+                Official Communications
+              </span>
+              <h1 style={{ color: '#FFFFFF', marginTop: '0.5rem', marginBottom: '1rem' }}>Notices &amp; Circulars Board</h1>
+              <p style={{ color: '#CBD5E1', maxWidth: '680px', margin: '0 auto', fontSize: '1.1rem' }}>
+                Statutory communications, CBSE updates, and academic notifications for parents and students.
+              </p>
+            </div>
+          </div>
+
+          <section className="section">
+            <div className="container">
+              {/* Search Bar */}
+              <div className="search-box-wrapper">
+                <Icon name="search" size={18} className="search-icon-inside" />
+                <input
+                  type="text"
+                  className="search-input"
+                  placeholder="Search notices by keyword or topic..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+              </div>
+
+              {/* Category Filters */}
+              <div className="filter-tabs">
+                {['All', 'CBSE', 'Academic', 'General'].map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => setCategory(cat)}
+                    className={`filter-tab ${category === cat ? 'active' : ''}`}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+
+              {/* Notice Board List */}
+              <div style={{ maxWidth: '900px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                {filteredNotices.length === 0 ? (
+                  <div className="card" style={{ textAlign: 'center', padding: '3rem' }}>
+                    <p style={{ color: '#64748B', fontSize: '1.1rem' }}>No notices match your current search query.</p>
+                  </div>
+                ) : (
+                  filteredNotices.map((notice) => (
+                    <div key={notice.id} className="card" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1.25rem' }}>
+                      <div style={{ flex: 1, minWidth: '260px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}>
+                          <span className="section-badge" style={{ margin: 0, fontSize: '0.75rem' }}>{notice.category}</span>
+                          {notice.isNew && <span style={{ background: '#EF4444', color: '#FFF', fontSize: '0.7rem', padding: '0.2rem 0.5rem', borderRadius: '4px', fontWeight: '700' }}>NEW</span>}
+                          <span style={{ fontSize: '0.8rem', color: '#94A3B8', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                            <Icon name="calendar" size={13} color="#94A3B8" />
+                            {notice.date}
+                          </span>
+                        </div>
+                        <h3 style={{ color: '#0F2C59', fontSize: '1.2rem', marginBottom: '0.35rem' }}>{notice.title}</h3>
+                        <p style={{ color: '#64748B', fontSize: '0.9rem', margin: 0 }}>{notice.summary}</p>
+                      </div>
+
+                      <div style={{ flexShrink: 0 }}>
+                        <a
+                          href={notice.file}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn btn-outline btn-sm"
+                        >
+                          <Icon name="download" size={14} color="#0F2C59" />
+                          View / Download
+                        </a>
+                      </div>
+                    </div>
+                  ))
+                )}
+              </div>
+            </div>
+          </section>
+        </div>
+      );
+    }
+
+    // =========================================================================
+    // 10. CBSE MANDATORY PUBLIC DISCLOSURE (SARAS 7.0 APPENDIX-IX)
+    // =========================================================================
+    function DisclosurePage() {
+      return (
+        <div>
+          <div style={{ background: '#0F2C59', color: '#FFFFFF', padding: '4rem 0 3.5rem', textAlign: 'center' }}>
+            <div className="container">
+              <span className="section-badge" style={{ background: 'rgba(212, 175, 55, 0.2)', color: '#D4AF37', borderColor: 'rgba(212, 175, 55, 0.4)' }}>
+                SARAS 7.0 Mandatory Public Disclosure
+              </span>
+              <h1 style={{ color: '#FFFFFF', marginTop: '0.5rem', marginBottom: '1rem' }}>APPENDIX - IX</h1>
+              <p style={{ color: '#CBD5E1', maxWidth: '750px', margin: '0 auto', fontSize: '1.05rem' }}>
+                Mandatory Public Disclosure in compliance with CBSE Circular No. 09/2021 for Siang Royal School (Affiliation No: 2230091 | School Code: 35089).
+              </p>
+            </div>
+          </div>
+
+          <section className="section">
+            <div className="container">
+              {/* SECTION A: GENERAL INFORMATION */}
+              <div className="disclosure-card">
+                <div className="disclosure-card-header">
+                  <h3>
+                    <Icon name="building" size={20} color="#D4AF37" />
+                    <span>A : GENERAL INFORMATION</span>
+                  </h3>
+                  <span className="disclosure-badge">CBSE SARAS 7.0</span>
+                </div>
+                <div className="table-responsive">
+                  <table className="data-table">
+                    <thead>
+                      <tr>
+                        <th style={{ width: '80px' }}>SL NO.</th>
+                        <th style={{ width: '45%' }}>INFORMATION</th>
+                        <th>DETAILS</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td><strong>NAME OF THE SCHOOL*</strong></td>
+                        <td>SIANG ROYAL SCHOOL</td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td><strong>AFFILIATION NO. (IF APPLICABLE)</strong></td>
+                        <td><span className="verified-badge">2230091</span></td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td><strong>SCHOOL CODE (IF APPLICABLE)</strong></td>
+                        <td>35089</td>
+                      </tr>
+                      <tr>
+                        <td>4</td>
+                        <td><strong>COMPLETE ADDRESS WITH PIN CODE*</strong></td>
+                        <td>Mirbuk Pekung, EAST SIANG, ARUNACHAL PRADESH - 791102</td>
+                      </tr>
+                      <tr>
+                        <td>5</td>
+                        <td><strong>PRINCIPAL NAME*</strong></td>
+                        <td>ASHISH POKHREL CHETR</td>
+                      </tr>
+                      <tr>
+                        <td>6</td>
+                        <td><strong>PRINCIPAL QUALIFICATION*</strong></td>
+                        <td>MSC, B.ED</td>
+                      </tr>
+                      <tr>
+                        <td>7</td>
+                        <td><strong>SCHOOL EMAIL ID*</strong></td>
+                        <td><a href="mailto:siangroyalschool@gmail.com">siangroyalschool@gmail.com</a></td>
+                      </tr>
+                      <tr>
+                        <td>8</td>
+                        <td><strong>CONTACT DETAILS (LANDLINE/MOBILE)*</strong></td>
+                        <td><a href="tel:7002857014">7002857014</a></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* SECTION B: DOCUMENTS AND INFORMATION */}
+              <div className="disclosure-card">
+                <div className="disclosure-card-header">
+                  <h3>
+                    <Icon name="fileText" size={20} color="#D4AF37" />
+                    <span>B : DOCUMENTS AND INFORMATION</span>
+                  </h3>
+                  <span className="disclosure-badge">Statutory Certificates</span>
+                </div>
+                <div className="table-responsive">
+                  <table className="data-table">
+                    <thead>
+                      <tr>
+                        <th style={{ width: '80px' }}>SL NO.</th>
+                        <th style={{ width: '55%' }}>DOCUMENTS / INFORMATION</th>
+                        <th>LINKS OF UPLOADED DOCUMENTS ON SCHOOL WEBSITE</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {data.documents.map((doc) => (
+                        <tr key={doc.id}>
+                          <td>{doc.id}</td>
+                          <td>
+                            <strong>{doc.name}</strong>
+                            <div style={{ fontSize: '0.75rem', color: '#64748B', marginTop: '0.2rem' }}>{doc.note}</div>
+                          </td>
+                          <td>
+                            {doc.status === 'Official URL' ? (
+                              <a
+                                href={doc.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn btn-outline btn-sm"
+                              >
+                                <Icon name="download" size={13} color="#0F2C59" />
+                                View Document
+                              </a>
+                            ) : (
+                              <span className="placeholder-badge">
+                                [PDF TO BE LINKED]
+                              </span>
+                            )}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* SECTION C : RESULT AND ACADEMICS */}
+              <div className="disclosure-card">
+                <div className="disclosure-card-header">
+                  <h3>
+                    <Icon name="award" size={20} color="#D4AF37" />
+                    <span>C : RESULT AND ACADEMICS</span>
+                  </h3>
+                  <span className="disclosure-badge">Academic Compliance</span>
+                </div>
+                <div className="table-responsive">
+                  <table className="data-table">
+                    <thead>
+                      <tr>
+                        <th style={{ width: '80px' }}>SL NO.</th>
+                        <th style={{ width: '55%' }}>DOCUMENTS / INFORMATION</th>
+                        <th>LINKS OF UPLOADED DOCUMENTS ON SCHOOL WEBSITE</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {data.academicsDisclosure.map((item) => (
+                        <tr key={item.id}>
+                          <td>{item.id}</td>
+                          <td><strong>{item.title}</strong></td>
+                          <td>
+                            {item.verified ? (
+                              <a
+                                href={item.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn btn-outline btn-sm"
+                              >
+                                <Icon name="externalLink" size={13} color="#0F2C59" />
+                                Access Document
+                              </a>
+                            ) : (
+                              <span className="placeholder-badge">
+                                {item.note || '[DATA TO BE UPDATED]'}
+                              </span>
+                            )}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* SECTION D : STAFF (TEACHING) */}
+              <div className="disclosure-card">
+                <div className="disclosure-card-header">
+                  <h3>
+                    <Icon name="users" size={20} color="#D4AF37" />
+                    <span>D : STAFF (TEACHING)</span>
+                  </h3>
+                  <span className="disclosure-badge">Faculty Record</span>
+                </div>
+                <div className="table-responsive">
+                  <table className="data-table">
+                    <thead>
+                      <tr>
+                        <th style={{ width: '80px' }}>SL NO.</th>
+                        <th style={{ width: '45%' }}>INFORMATION</th>
+                        <th>DETAILS</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td><strong>PRINCIPAL*</strong></td>
+                        <td>ASHISH POKHREL CHETR</td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td><strong>TOTAL NO. OF TEACHERS*</strong></td>
+                        <td>
+                          <strong>23</strong>
+                          <div style={{ marginTop: '0.4rem', display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+                            <span className="verified-badge">PGT: {data.staffStats.pgt}</span>
+                            <span className="verified-badge">TGT: {data.staffStats.tgt}</span>
+                            <span className="verified-badge">PRT: {data.staffStats.prt}</span>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td><strong>TEACHERS SECTION RATIO*</strong></td>
+                        <td><strong>{data.staffStats.teacherSectionRatio}</strong></td>
+                      </tr>
+                      <tr>
+                        <td>4</td>
+                        <td><strong>DETAILS OF SPECIAL EDUCATOR*</strong></td>
+                        <td>KUMAR CHETRY</td>
+                      </tr>
+                      <tr>
+                        <td>5</td>
+                        <td><strong>DETAILS OF COUNSELLOR AND WELLNESS TEACHER*</strong></td>
+                        <td>SOIHIAM PHAOMEI</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* BOARD EXAMINATION RESULTS TABLES (CLASS X & CLASS XII) */}
+              <div className="disclosure-card">
+                <div className="disclosure-card-header">
+                  <h3>
+                    <Icon name="award" size={20} color="#D4AF37" />
+                    <span>RESULT CLASS: X &amp; RESULT CLASS: XII</span>
+                  </h3>
+                  <span className="disclosure-badge">[DATA TO BE UPDATED]</span>
+                </div>
+                <div style={{ padding: '1.25rem 1.5rem', background: '#F8FAFC', borderBottom: '1px solid #E2E8F0' }}>
+                  <h4 style={{ color: '#0F2C59', margin: 0 }}>RESULT CLASS: X</h4>
+                </div>
+                <div className="table-responsive">
+                  <table className="data-table">
+                    <thead>
+                      <tr>
+                        <th>SL NO.</th>
+                        <th>YEAR</th>
+                        <th>NO. OF REGISTERED STUDENTS</th>
+                        <th>NO. OF STUDENTS PASSED</th>
+                        <th>PASS PERCENTAGE</th>
+                        <th>REMARKS</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {data.boardResults.classX.map((r, i) => (
+                        <tr key={i}>
+                          <td>{i + 1}</td>
+                          <td>{r.year}</td>
+                          <td><span className="placeholder-badge">{r.registered}</span></td>
+                          <td><span className="placeholder-badge">{r.passed}</span></td>
+                          <td><span className="placeholder-badge">{r.passPercentage}</span></td>
+                          <td style={{ color: '#64748B' }}>{r.remarks}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                <div style={{ padding: '1.25rem 1.5rem', background: '#F8FAFC', borderBottom: '1px solid #E2E8F0', borderTop: '1px solid #E2E8F0' }}>
+                  <h4 style={{ color: '#0F2C59', margin: 0 }}>RESULT CLASS: XII</h4>
+                </div>
+                <div className="table-responsive">
+                  <table className="data-table">
+                    <thead>
+                      <tr>
+                        <th>SL NO.</th>
+                        <th>YEAR</th>
+                        <th>NO. OF REGISTERED STUDENTS</th>
+                        <th>NO. OF STUDENTS PASSED</th>
+                        <th>PASS PERCENTAGE</th>
+                        <th>REMARKS</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {data.boardResults.classXII.map((r, i) => (
+                        <tr key={i}>
+                          <td>{i + 1}</td>
+                          <td>{r.year}</td>
+                          <td><span className="placeholder-badge">{r.registered}</span></td>
+                          <td><span className="placeholder-badge">{r.passed}</span></td>
+                          <td><span className="placeholder-badge">{r.passPercentage}</span></td>
+                          <td style={{ color: '#64748B' }}>{r.remarks}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* SECTION E : SCHOOL INFRASTRUCTURE */}
+              <div className="disclosure-card">
+                <div className="disclosure-card-header">
+                  <h3>
+                    <Icon name="building" size={20} color="#D4AF37" />
+                    <span>E : SCHOOL INFRASTRUCTURE</span>
+                  </h3>
+                  <span className="disclosure-badge">Infrastructure Specifications</span>
+                </div>
+                <div className="table-responsive">
+                  <table className="data-table">
+                    <thead>
+                      <tr>
+                        <th style={{ width: '80px' }}>SL NO.</th>
+                        <th style={{ width: '45%' }}>INFORMATION</th>
+                        <th>DETAILS</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td><strong>TOTAL CAMPUS AREA OF THE SCHOOL (IN SQUARE MTR)*</strong></td>
+                        <td><strong>14136.70</strong></td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td><strong>NO. AND SIZE OF THE CLASS ROOMS (IN SQ MTR)*</strong></td>
+                        <td>No: <strong>19</strong> | Size: <strong>60 sq m</strong></td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td><strong>NO. AND SIZE OF LABORATORIES INCLUDING COMPUTER LABS (IN SQ MTR)*</strong></td>
+                        <td>No: <strong>6</strong> | Size: <strong>56 sq m</strong></td>
+                      </tr>
+                      <tr>
+                        <td>4</td>
+                        <td><strong>INTERNET FACILITY*</strong></td>
+                        <td><span className="verified-badge">Yes (Active Campus Connectivity)</span></td>
+                      </tr>
+                      <tr>
+                        <td>5</td>
+                        <td><strong>NO. OF GIRLS TOILETS*</strong></td>
+                        <td><strong>5</strong></td>
+                      </tr>
+                      <tr>
+                        <td>6</td>
+                        <td><strong>NO. OF BOYS TOILETS*</strong></td>
+                        <td><strong>5</strong></td>
+                      </tr>
+                      <tr>
+                        <td>7</td>
+                        <td><strong>LINK OF YOUTUBE VIDEO OF THE INSPECTION OF SCHOOL</strong></td>
+                        <td>
+                          <a
+                            href={data.general.inspectionVideo.youtubeUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn btn-outline btn-sm"
+                          >
+                            <Icon name="video" size={14} color="#0F2C59" />
+                            {data.general.inspectionVideo.youtubeUrl}
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      );
+    }
+
+    // =========================================================================
+    // 11. CONTACT US PAGE VIEW
+    // =========================================================================
+    function ContactPage({ showToast }) {
+      const [contactForm, setContactForm] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: ''
+      });
+      const [errors, setErrors] = useState({});
+      const [submitted, setSubmitted] = useState(false);
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        const errs = {};
+        if (!contactForm.name.trim()) errs.name = 'Please provide your full name';
+        if (!contactForm.email.trim() || !contactForm.email.includes('@')) errs.email = 'Valid email is required';
+        if (!contactForm.phone.trim() || contactForm.phone.length < 10) errs.phone = 'Valid phone number is required';
+        if (!contactForm.message.trim()) errs.message = 'Please enter your message';
+
+        if (Object.keys(errs).length > 0) {
+          setErrors(errs);
+          return;
+        }
+
+        setErrors({});
+        setSubmitted(true);
+        setTimeout(() => {
+          setSubmitted(false);
+          setContactForm({ name: '', email: '', phone: '', subject: '', message: '' });
+          showToast('Message sent! Our office will get back to you soon.');
+        }, 2000);
+      };
+
+      return (
+        <div>
+          <div style={{ background: '#0F2C59', color: '#FFFFFF', padding: '4rem 0 3.5rem', textAlign: 'center' }}>
+            <div className="container">
+              <span className="section-badge" style={{ background: 'rgba(212, 175, 55, 0.2)', color: '#D4AF37', borderColor: 'rgba(212, 175, 55, 0.4)' }}>
+                Connect With Us
+              </span>
+              <h1 style={{ color: '#FFFFFF', marginTop: '0.5rem', marginBottom: '1rem' }}>Contact Siang Royal School</h1>
+              <p style={{ color: '#CBD5E1', maxWidth: '680px', margin: '0 auto', fontSize: '1.1rem' }}>
+                We welcome parent enquiries, campus visitation requests, and institutional communications.
+              </p>
+            </div>
+          </div>
+
+          <section className="section">
+            <div className="container">
+              <div style={{ display: 'grid', gridTemplateColumns: '0.9fr 1.1fr', gap: '3.5rem' }}>
+                {/* Contact Information Cards */}
+                <div>
+                  <span className="section-badge">School Office</span>
+                  <h2 className="section-title">Institutional Location</h2>
+                  <p style={{ color: '#64748B', marginBottom: '2rem' }}>
+                    Situated in the picturesque East Siang district of Arunachal Pradesh.
+                  </p>
+
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                    <div className="card" style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
+                      <div style={{ width: '48px', height: '48px', borderRadius: '10px', background: '#E0F2FE', color: '#0284C7', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                        <Icon name="mapPin" size={24} color="#0284C7" />
+                      </div>
+                      <div>
+                        <h4 style={{ color: '#0F2C59', marginBottom: '0.25rem' }}>Campus Address</h4>
+                        <p style={{ color: '#64748B', fontSize: '0.925rem', margin: 0 }}>{data.general.address.full}</p>
+                      </div>
+                    </div>
+
+                    <div className="card" style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
+                      <div style={{ width: '48px', height: '48px', borderRadius: '10px', background: '#FEF3C7', color: '#D97706', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                        <Icon name="phone" size={24} color="#D97706" />
+                      </div>
+                      <div>
+                        <h4 style={{ color: '#0F2C59', marginBottom: '0.25rem' }}>Official Phone</h4>
+                        <a href={`tel:${data.general.contact.phone}`} style={{ fontSize: '1.1rem', fontWeight: '700', color: '#0F2C59' }}>
+                          {data.general.contact.phone}
+                        </a>
+                        <div style={{ fontSize: '0.8rem', color: '#94A3B8' }}>Verified SARAS Contact Number</div>
+                      </div>
+                    </div>
+
+                    <div className="card" style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
+                      <div style={{ width: '48px', height: '48px', borderRadius: '10px', background: '#DCFCE7', color: '#16A34A', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                        <Icon name="mail" size={24} color="#16A34A" />
+                      </div>
+                      <div>
+                        <h4 style={{ color: '#0F2C59', marginBottom: '0.25rem' }}>Official Email</h4>
+                        <a href={`mailto:${data.general.contact.email}`} style={{ fontSize: '1.05rem', fontWeight: '600', color: '#0F2C59' }}>
+                          {data.general.contact.email}
+                        </a>
+                        <div style={{ fontSize: '0.8rem', color: '#94A3B8' }}>Verified SARAS School Email</div>
+                      </div>
+                    </div>
+
+                    <div className="card" style={{ display: 'flex', gap: '1.25rem', alignItems: 'flex-start' }}>
+                      <div style={{ width: '48px', height: '48px', borderRadius: '10px', background: '#F1F5F9', color: '#64748B', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                        <Icon name="clock" size={24} color="#64748B" />
+                      </div>
+                      <div>
+                        <h4 style={{ color: '#0F2C59', marginBottom: '0.25rem' }}>Administrative Hours</h4>
+                        <p style={{ color: '#64748B', fontSize: '0.925rem', margin: 0 }}>{data.general.contact.officeHours}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Interactive Contact Form */}
+                <div>
+                  <div className="card" style={{ padding: '2.5rem' }}>
+                    <h3 style={{ color: '#0F2C59', marginBottom: '0.5rem' }}>Send Us a Message</h3>
+                    <p style={{ color: '#64748B', fontSize: '0.9rem', marginBottom: '1.5rem' }}>
+                      Please submit your message and our office will respond at the earliest.
+                    </p>
+
+                    {submitted ? (
+                      <div style={{ textAlign: 'center', padding: '3rem 1rem' }}>
+                        <div style={{ width: '60px', height: '60px', borderRadius: '50%', background: '#DCFCE7', color: '#166534', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem' }}>
+                          <Icon name="checkCircle" size={32} color="#166534" />
+                        </div>
+                        <h4 style={{ color: '#0F2C59', marginBottom: '0.5rem' }}>Message Dispatched!</h4>
+                        <p style={{ color: '#64748B', fontSize: '0.9rem' }}>
+                          Thank you for reaching out to Siang Royal School.
+                        </p>
+                      </div>
+                    ) : (
+                      <form onSubmit={handleSubmit}>
+                        <div className="form-group">
+                          <label className="form-label">Your Full Name *</label>
+                          <input
+                            type="text"
+                            className={`form-control ${errors.name ? 'error' : ''}`}
+                            placeholder="Enter your name"
+                            value={contactForm.name}
+                            onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
+                          />
+                          {errors.name && <span className="form-error-msg">{errors.name}</span>}
+                        </div>
+
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                          <div className="form-group">
+                            <label className="form-label">Email Address *</label>
+                            <input
+                              type="email"
+                              className={`form-control ${errors.email ? 'error' : ''}`}
+                              placeholder="name@domain.com"
+                              value={contactForm.email}
+                              onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
+                            />
+                            {errors.email && <span className="form-error-msg">{errors.email}</span>}
+                          </div>
+                          <div className="form-group">
+                            <label className="form-label">Phone Number *</label>
+                            <input
+                              type="tel"
+                              className={`form-control ${errors.phone ? 'error' : ''}`}
+                              placeholder="10-digit mobile"
+                              value={contactForm.phone}
+                              onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })}
+                            />
+                            {errors.phone && <span className="form-error-msg">{errors.phone}</span>}
+                          </div>
+                        </div>
+
+                        <div className="form-group">
+                          <label className="form-label">Subject</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            placeholder="General Enquiry / Admissions / Verification"
+                            value={contactForm.subject}
+                            onChange={(e) => setContactForm({ ...contactForm, subject: e.target.value })}
+                          />
+                        </div>
+
+                        <div className="form-group">
+                          <label className="form-label">Your Message *</label>
+                          <textarea
+                            className={`form-control ${errors.message ? 'error' : ''}`}
+                            rows="4"
+                            placeholder="Write your message here..."
+                            value={contactForm.message}
+                            onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
+                          ></textarea>
+                          {errors.message && <span className="form-error-msg">{errors.message}</span>}
+                        </div>
+
+                        <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: '1rem' }}>
+                          Send Message
+                        </button>
+                        <p style={{ fontSize: '0.75rem', color: '#94A3B8', marginTop: '0.75rem', textAlign: 'center' }}>
+                          Direct contact also available at <strong>siangroyalschool@gmail.com</strong> or <strong>7002857014</strong>.
+                        </p>
+                      </form>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      );
+    }
+
+    // Mount React App
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>

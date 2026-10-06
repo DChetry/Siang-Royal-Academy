@@ -1,0 +1,22 @@
+{
+  "name": "siang-royal-school",
+  "version": "1.0.0",
+  "description": "Modern CBSE School Website for Siang Royal School, Mirbuk Pekung, East Siang, Arunachal Pradesh (CBSE Affiliation No. 2230091)",
+  "keywords": [
+    "siang-royal-school",
+    "cbse",
+    "school-website",
+    "react",
+    "html5",
+    "css3"
+  ],
+  "author": "Siang Royal School",
+  "license": "MIT",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

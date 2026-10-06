@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400" fill="none">
+  <rect width="600" height="400" rx="16" fill="#F8FAFC"/>
+  <rect x="30" y="30" width="250" height="340" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+  <rect x="320" y="30" width="250" height="340" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+  
+  <!-- Girls Toilets Block -->
+  <circle cx="155" cy="110" r="45" fill="#FDF2F8"/>
+  <circle cx="155" cy="95" r="16" fill="#DB2777"/>
+  <path d="M135 125 L175 125 L165 155 L145 155 Z" fill="#DB2777"/>
+  <text x="155" y="195" text-anchor="middle" font-family="'Poppins', sans-serif" font-size="16" font-weight="700" fill="#0F2C59">GIRLS TOILETS</text>
+  <text x="155" y="240" text-anchor="middle" font-family="'Poppins', sans-serif" font-size="38" font-weight="800" fill="#DB2777">05</text>
+  <text x="155" y="275" text-anchor="middle" font-family="'Inter', sans-serif" font-size="12" fill="#64748B">Dedicated Hygiene Facilities</text>
+
+  <!-- Boys Toilets Block -->
+  <circle cx="445" cy="110" r="45" fill="#EFF6FF"/>
+  <circle cx="445" cy="95" r="16" fill="#2563EB"/>
+  <path d="M145 125 L165 125" stroke="#2563EB"/>
+  <rect x="437" y="120" width="16" height="35" rx="3" fill="#2563EB"/>
+  <text x="445" y="195" text-anchor="middle" font-family="'Poppins', sans-serif" font-size="16" font-weight="700" fill="#0F2C59">BOYS TOILETS</text>
+  <text x="445" y="240" text-anchor="middle" font-family="'Poppins', sans-serif" font-size="38" font-weight="800" fill="#2563EB">05</text>
+  <text x="445" y="275" text-anchor="middle" font-family="'Inter', sans-serif" font-size="12" fill="#64748B">Dedicated Hygiene Facilities</text>
+
+  <rect x="180" y="325" width="240" height="32" rx="16" fill="#0F2C59"/>
+  <text x="300" y="346" text-anchor="middle" font-family="'Inter', sans-serif" font-size="11.5" font-weight="600" fill="#FFFFFF">HEALTH &amp; SANITATION COMPLIANT</text>
+</svg>

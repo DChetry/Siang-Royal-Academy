@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 480" width="400" height="480" fill="none">
+  <defs>
+    <linearGradient id="bgP" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F2C59"/>
+      <stop offset="100%" stop-color="#1E3A8A"/>
+    </linearGradient>
+    <linearGradient id="goldAcc" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#F59E0B"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Card -->
+  <rect width="400" height="480" rx="16" fill="url(#bgP)"/>
+  
+  <!-- Subtle Decorative Geometric Patterns -->
+  <circle cx="360" cy="40" r="120" stroke="#FFFFFF" stroke-opacity="0.05" stroke-width="40"/>
+  <circle cx="40" cy="440" r="100" stroke="#D4AF37" stroke-opacity="0.08" stroke-width="30"/>
+
+  <!-- Academic Avatar Silhouette Frame -->
+  <circle cx="200" cy="180" r="100" fill="#153E75" stroke="url(#goldAcc)" stroke-width="4"/>
+  
+  <!-- Silhouette Head & Shoulders -->
+  <g fill="#93C5FD" opacity="0.85">
+    <!-- Head -->
+    <circle cx="200" cy="155" r="42"/>
+    <!-- Tie / Collar -->
+    <polygon points="200,205 190,250 200,265 210,250" fill="#D4AF37"/>
+    <!-- Suit / Shoulders -->
+    <path d="M130 255 C130 215, 160 205, 185 205 L215 205 C240 205, 270 215, 270 255 L270 278 A100 100 0 0 1 130 278 Z"/>
+    <!-- Academic Cap / Mortarboard Outline Accent -->
+    <polygon points="200,90 245,108 200,126 155,108" fill="#D4AF37" opacity="0.95"/>
+    <path d="M200 126 L200 138" stroke="#D4AF37" stroke-width="2"/>
+    <circle cx="200" cy="140" r="3" fill="#D4AF37"/>
+  </g>
+
+  <!-- Placeholder Badge Tag -->
+  <rect x="50" y="310" width="300" height="32" rx="16" fill="#FDE047" fill-opacity="0.15" stroke="#FDE047" stroke-dasharray="4 3"/>
+  <text x="200" y="331" text-anchor="middle" font-family="'Inter', sans-serif" font-size="12" font-weight="600" fill="#FDE047" letter-spacing="1">[PRINCIPAL PHOTOGRAPH TO BE PROVIDED]</text>
+
+  <!-- Name & Credentials Box -->
+  <rect x="25" y="360" width="350" height="95" rx="12" fill="#FFFFFF"/>
+  <text x="200" y="392" text-anchor="middle" font-family="'Poppins', sans-serif" font-size="18" font-weight="700" fill="#0F2C59">Ashish Pokhrel Chetr</text>
+  <text x="200" y="414" text-anchor="middle" font-family="'Inter', sans-serif" font-size="13.5" font-weight="600" fill="#D4AF37" letter-spacing="0.5">PRINCIPAL</text>
+  <text x="200" y="435" text-anchor="middle" font-family="'Inter', sans-serif" font-size="12" font-weight="500" fill="#64748B">Qualifications: MSc, B.Ed</text>
+</svg>

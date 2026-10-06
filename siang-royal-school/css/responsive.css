@@ -1,0 +1,194 @@
+/* ==========================================================================
+   SIANG ROYAL SCHOOL - RESPONSIVE LAYOUT ENGINE
+   Target Breakpoints:
+   - Mobile: 320px, 375px, 425px
+   - Tablet: 768px, 820px, 1024px
+   - Desktop: 1280px, 1440px, 1920px+
+   ========================================================================== */
+
+/* Large Desktop (<= 1200px) */
+@media (max-width: 1200px) {
+  .hero-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+
+  .stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .timeline-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .footer-grid {
+    grid-template-columns: 1.2fr 1fr 1fr;
+  }
+  
+  .footer-contact-col {
+    grid-column: span 3;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+}
+
+/* Medium Desktop & Tablet Landscape (<= 1024px) */
+@media (max-width: 1024px) {
+  :root {
+    --header-height: 76px;
+  }
+
+  .topbar {
+    display: none; /* Hide topbar on tablet/mobile to conserve viewport */
+  }
+
+  .nav-links, .nav-actions .btn-desktop {
+    display: none;
+  }
+
+  .mobile-nav-toggle {
+    display: flex;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero-desc {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-meta-strip {
+    justify-content: center;
+  }
+
+  .principal-card-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .principal-message-content blockquote {
+    padding-left: 0;
+    border-left: none;
+    border-top: 2px solid var(--secondary);
+    padding-top: 1rem;
+  }
+
+  .principal-portrait-wrapper {
+    max-width: 360px;
+    margin: 0 auto;
+  }
+}
+
+/* Tablet Portrait (<= 768px) */
+@media (max-width: 768px) {
+  .section {
+    padding: 3.5rem 0;
+  }
+
+  .stat-strip {
+    margin-top: -2rem;
+  }
+
+  .stat-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .timeline-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .footer-contact-col {
+    grid-column: span 1;
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .footer-bottom .container {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+  }
+
+  .disclosure-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Mobile Devices (<= 480px) */
+@media (max-width: 480px) {
+  :root {
+    --header-height: 70px;
+  }
+
+  .nav-brand-logo {
+    height: 44px;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  .hero-meta-strip {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .stat-card {
+    padding: 1.25rem 1rem;
+  }
+
+  .filter-tabs {
+    gap: 0.4rem;
+  }
+
+  .filter-tab {
+    padding: 0.45rem 0.95rem;
+    font-size: 0.8rem;
+  }
+
+  .data-table th, .data-table td {
+    padding: 0.75rem 0.85rem;
+    font-size: 0.85rem;
+  }
+
+  .modal-card {
+    padding: 1.5rem 1rem;
+  }
+}
+
+/* Extra Small (<= 360px) */
+@media (max-width: 360px) {
+  .hero-title {
+    font-size: 1.75rem;
+  }
+
+  .stat-value {
+    font-size: 1.35rem;
+  }
+}
